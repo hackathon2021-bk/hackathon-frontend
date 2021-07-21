@@ -2,6 +2,7 @@ import { Layout } from "antd";
 
 import Sidebar from "layout/Sidebar";
 import Topbar from "layout/Topbar";
+import Footer from "./Footer";
 
 function AppLayout({ children }) {
   return (
@@ -13,7 +14,7 @@ function AppLayout({ children }) {
           <div className="gx-main-content-wrapper">{children}</div>
           <Layout.Footer>
             <div className="gx-layout-footer-content">
-              Insight Smart Ecommerce - GR - 2021
+              <Footer />
             </div>
           </Layout.Footer>
         </Layout.Content>
