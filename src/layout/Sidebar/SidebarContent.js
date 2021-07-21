@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Menu } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 import AppLink from "components/AppLink";
 
 import { SettingActions } from "app-redux/settings";
+
+import {Button, Card, Dropdown, Menu, message} from "antd";
+import {DownOutlined} from '@ant-design/icons';
+
+
+
+function handleMenuClick(e) {
+  message.info('Click on menu item.', e);
+}
+
+const menu = (
+  <Menu onClick={handleMenuClick}>
+    <Menu.Item key="1">Products</Menu.Item>
+    <Menu.Item key="2">Apps</Menu.Item>
+    <Menu.Item key="3">Blogs</Menu.Item>
+  </Menu>
+);
+
 
 function SidebarContent() {
   const dispatch = useDispatch();
@@ -23,11 +40,6 @@ function SidebarContent() {
   return (
     <>
       <div className="gx-layout-sider-header">
-        <Link href="/">
-          <a className="gx-site-logo">
-            <img alt="logo2" src="/images/logo.png" />
-          </a>
-        </Link>
       </div>
       <div className="gx-sidebar-content">
         <Menu
@@ -36,38 +48,52 @@ function SidebarContent() {
           theme="dark"
           mode="inline"
         >
-          <Menu.ItemGroup key="apps" className="gx-menu-group" title="Apps">
-            <Menu.Item key="competitor-products">
-              <AppLink href="/competitor-products">
-                <i className="icon icon-orders" />
-                <span>Competitor Products</span>
-              </AppLink>
-            </Menu.Item>
-
-            <Menu.Item key="competitor-stores">
-              <AppLink href="/competitor-stores">
-                <i className="icon icon-geo-location" />
-                <span>Competitor Stores</span>
-              </AppLink>
+          <Menu.ItemGroup key="stations" className="gx-menu-group" title="Chọn trạm">
+            <Menu.Item key="stations">
+              <Dropdown overlay={menu}>
+              <Button >
+                Stations <DownOutlined/>
+              </Button>
+              </Dropdown>
             </Menu.Item>
           </Menu.ItemGroup>
 
-          {user.role === "admin" && (
-            <Menu.ItemGroup key="admin" className="gx-menu-group" title="Admin">
-              <Menu.Item key="users">
-                <AppLink href="/users">
-                  <i className="icon icon-user" />
-                  <span>Users</span>
-                </AppLink>
-              </Menu.Item>
-              <Menu.Item key="data">
-                <AppLink href="/data">
-                  <i className="icon icon-data-display" />
-                  Data
-                </AppLink>
-              </Menu.Item>
-            </Menu.ItemGroup>
-          )}
+          <Menu.ItemGroup key="applications" className="gx-menu-group" title="Chức năng">
+            <Menu.Item key="summary">
+              <AppLink href="/summary">
+                <i className="icon icon-orders" />
+                <span>Tổng hợp</span>
+              </AppLink>
+            </Menu.Item>
+
+            <Menu.Item key="analysis">
+              <AppLink href="/analysis">
+                <i className="icon icon-geo-location" />
+                <span>Phân tích</span>
+              </AppLink>
+            </Menu.Item>
+
+            <Menu.Item key="history-data">
+              <AppLink href="/historydata">
+                <i className="icon icon-geo-location" />
+                <span>Dữ liệu quá khứ</span>
+              </AppLink>
+            </Menu.Item>
+
+            <Menu.Item key="predict">
+              <AppLink href="/predict">
+                <i className="icon icon-geo-location" />
+                <span>Dự đoán</span>
+              </AppLink>
+            </Menu.Item>
+
+            <Menu.Item key="settings">
+              <AppLink href="/settings">
+                <i className="icon icon-geo-location" />
+                <span>Cài đặt</span>
+              </AppLink>
+            </Menu.Item>
+          </Menu.ItemGroup>
         </Menu>
       </div>
     </>

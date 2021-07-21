@@ -1,3 +1,5 @@
+import { NAV_STYLE } from "constants/ThemeSetting";
+
 const SET_WINDOW_WIDTH = "set_window_width";
 const TOGGLE_COLLAPSED_NAV = "toggle_collapsed_nav";
 const SWITCH_LANGUAGE = "switch_language";
@@ -20,13 +22,14 @@ const SettingActions = {
 
 const initialState = {
   navCollapsed: false,
+  navStyle: NAV_STYLE,
   pathname: "",
   width: 1367,
   locale: {
-    languageId: "english",
-    locale: "en",
-    name: "English",
-    icon: "us",
+    languageId: "vietnamese",
+    locale: "vi",
+    name: "Vietnamese",
+    icon: "vi",
   },
 };
 

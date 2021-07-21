@@ -34,6 +34,8 @@ function TopBar() {
                   alt=""
                   className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
                   src="/images/w-logo.png"
+                  width="55"
+                  height="55"
                 />
               </a>
             </Link>
@@ -43,6 +45,8 @@ function TopBar() {
                   alt=""
                   className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
                   src="/images/logo.png"
+                  width="55"
+                  height="55"
                 />
               </a>
             </Link>
