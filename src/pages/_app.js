@@ -1,5 +1,5 @@
 import "styles/style.min.css";
-
+import "styles/main.css";
 import Router from "next/router";
 import NProgress from "nprogress";
 import { Provider } from "react-redux";
