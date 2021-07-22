@@ -15,6 +15,7 @@ import {
   THEME_TYPE_LITE
 } from "constants/ThemeSetting";
 
+const {Sider} = Layout;
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const Sidebar = () => {
   }
   console.log(`${drawerStyle}`);
   return (
-    <Layout.Sider
+    <Sider
       className={`gx-app-sidebar ${drawerStyle}  gx-layout-sider-dark`}
       trigger={null}
       collapsed={(width < TAB_SIZE ? false : navStyle === NAV_STYLE_MINI_SIDEBAR || navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR)}
@@ -83,7 +84,7 @@ const Sidebar = () => {
         </Drawer> : 
         <SidebarContent />
       }
-    </Layout.Sider>
+    </Sider>
   );
 };
 
