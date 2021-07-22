@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  insight_frontend:
+    image: "daongocthanh/gr-frontend:${IMAGE_TAG}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.insight_frontend.rule=Host(`insight.smartecommerce.tech`)"
+      - "traefik.http.services.insight_frontend.loadbalancer.server.port=3000"
