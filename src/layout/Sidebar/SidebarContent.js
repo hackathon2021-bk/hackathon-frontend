@@ -9,7 +9,7 @@ import { SettingActions } from "app-redux/settings";
 
 import {Button, Card, Dropdown, Menu, message} from "antd";
 import {DownOutlined} from '@ant-design/icons';
-
+import SidebarLogo from "./SidebarLogo";
 
 
 function handleMenuClick(e) {
@@ -39,6 +39,7 @@ function SidebarContent() {
   const defaultOpenKeys = selectedKeys.split("/")[1];
   return (
     <>
+      <SidebarLogo/>
       <div className="gx-layout-sider-header">
       </div>
       <div className="gx-sidebar-content">
