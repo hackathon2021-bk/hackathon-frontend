@@ -1,0 +1,24 @@
+.ant-menu-dark .ant-menu-item .icon {
+    margin-right: 5px !important;
+}
+
+.ant-menu-item .icon {
+    margin-right: 5px !important;
+}
+
+.gx-header-horizontal-nav-curve .ant-menu-horizontal>.ant-menu-item,
+.gx-header-horizontal-nav-curve .ant-menu-horizontal>.ant-menu-submenu {
+    margin-right: 20px;
+    color: white !important;
+}
+
+.ant-menu-horizontal>.ant-menu-item a {
+    color: white !important;
+    text-transform: uppercase;
+}
+
+.ant-menu-horizontal>.ant-menu-item a:hover {
+    color: orange !important;
+    text-decoration: underline !important;
+    /* background-color: aqua !important; */
+}
