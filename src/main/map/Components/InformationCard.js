@@ -11,7 +11,9 @@ function onSelect(value) {
 
 const InformationCard = () => {
     const getStationData = (data, stationId) =>{
-        let dtPoint = data['data'][stationId-1];
+        console.log('stationId :>> ', stationId);
+        let dtPoint = data['data'][stationId];
+        console.log('dtPoint :>> ', dtPoint);
         return {
             'id': stationId,
             'name': dtPoint['name'],
