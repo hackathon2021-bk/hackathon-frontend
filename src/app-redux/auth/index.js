@@ -12,7 +12,7 @@ const AuthActions = {
   },
   register({ username, role, email, password } = {}) {},
   login({ email, password } = {}) {
-    Router.push("/dashboard");
+    Router.push("/summary");
   },
   loginWithToken() {},
   logout() {
