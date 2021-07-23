@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {AutoComplete, Card, Col, Row, Text} from "antd";
 
-import {MapActions} from 'app-redux/map';
 import { useDispatch, useSelector } from "react-redux";
 import data from "data/data";
 import { Button } from "antd/lib/radio";
@@ -28,60 +27,15 @@ const InformationCard = () => {
             'rainfall': Math.round(dtPoint['data_daily']['rainfall'][Math.floor(Math.random() * dtPoint['data_daily']['rainfall'].length)]).toString(),
             'humidity': Math.round(dtPoint['data_daily']['humidity'][Math.floor(Math.random() * dtPoint['data_daily']['humidity'].length)]).toString(),
         }
-    }
-
-    const dispatch = useDispatch();
-    
+    }    
     // lay station mac dinh 
     const stationId = useSelector((state) => state.map.stationId);
 
     const curStationData =  getStationData(data, stationId);
 
-    const state = {
-        dataSource: [],
-    }
-
-    const handleSearch = (value) => {
-        state.dataSource = !value ? [] : [
-                value,
-                value + value,
-                value + value + value,
-                ];
-    }
-
     // console.log(`curStationData.known :>> images/tramthuydien${curStationData.id}.png`);
     return (
-        curStationData.known === 1 ?
         <>  
-            <Row  style={{ marginBottom: 8 }} >
-                <Col className="gutter-row"  span={8}>
-                    <div style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center'}}>
-                        Tìm trạm
-                    </div>
-                </Col>
-                <Col className="gutter-row"  span={16}>
-                    <AutoComplete
-                    dataSource={state.dataSource}
-                    style={{width: 200}}
-                    onSelect={onSelect}
-                    onSearch={handleSearch}
-                    placeholder="input here"
-                    />
-                </Col>
-            </Row>
-            <Row style={{ marginBottom: 8 }} > 
-                <Col className="gutter-row" >
-                    <div className="gx-mr-3">
-                        <img width="400px" height="300px" src={`images/tramthuydien${curStationData.id+1}.png`} alt='flying'/>
-                    </div>
-                </Col>
-            </Row>
-            <Row style={{marginBottom: 8, justifyContent: "center"}}>
-                <Col className="gutter-row" style={{fontSize: "25px"} }>
-                    <b>{curStationData['name']}</b>
-                </Col>
-            </Row>
-            
             <Row style={{marginBottom: 8, justifyContent: "center"}}>
                 <Col  span={8} className="gutter-row" style={{fontSize: "large"}}>
                     Nhiệt độ:
@@ -134,47 +88,6 @@ const InformationCard = () => {
                 <Col span={8} className="gutter-row" style={{fontSize: "large"}}>
                 {curStationData['evaporation']}
                 </Col>
-            </Row>
-
-        </> : 
-        <> 
-            <Row  style={{ marginBottom: 8 }} >
-                <Col className="gutter-row"  span={8}>
-                    <div style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center'}}>
-                        Tìm trạm
-                    </div>
-                </Col>
-                <Col className="gutter-row"  span={16}>
-                    <AutoComplete
-                    dataSource={state.dataSource}
-                    style={{width: 200}}
-                    onSelect={onSelect}
-                    onSearch={handleSearch}
-                    placeholder="input here"
-                    />
-                </Col>
-            </Row>
-            <Row style={{ marginBottom: 8 }} > 
-                <Col className="gutter-row" >
-                    <div className="gx-mr-3">
-                        <img width="400px" height="300" src={`images/tramthuydien${curStationData.id+1}.png`} alt='flying'/>
-                    </div>
-                </Col>
-            </Row>
-            <Row style={{marginBottom: 8, justifyContent: "center"}}>
-                <Col className="gutter-row" style={{fontSize: "25px"}}>
-                    <b>{curStationData['name']}</b>
-                </Col>
-            </Row>
-
-            <Row style={{marginBottom: 8, justifyContent: "center"}}>
-                <Col className="gutter-row" style={{fontSize: "large"}}>
-                Bạn chưa đăng ký nhận dữ liệu của trạm này 
-                </Col>
-            </Row>
-
-            <Row style={{marginBottom: 8, justifyContent: "center"}}>
-                <Button  className="gx-mb-0" type="primary">Đăng ký</Button>
             </Row>
         </>
     );
