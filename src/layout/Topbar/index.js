@@ -33,23 +33,23 @@ function TopBar() {
                 <img
                   alt=""
                   className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
-                  src="/images/w-logo.png"
+                  src="/images/wave-logo.svg"
                   width="55"
                   height="55"
                 />
               </a>
             </Link>
-            <Link href="/">
+            {/* <Link href="/">
               <a>
                 <img
                   alt=""
                   className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
-                  src="/images/logo.png"
+                  src="/images/wave-logo.svg"
                   width="55"
                   height="55"
                 />
               </a>
-            </Link>
+            </Link> */}
 
             <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
               <HorizontalNav />

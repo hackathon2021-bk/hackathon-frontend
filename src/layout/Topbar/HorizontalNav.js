@@ -21,13 +21,13 @@ function HorizontalNav() {
       > */}
       <Menu.Item key="explore">
         <AppLink href="/explore">
-          <i className="icon icon-search-new" />
+          <i className="icon icon-all-contacts" />
           <span>Quản Lý Trạm</span>
         </AppLink>
       </Menu.Item>
       <Menu.Item key="competitor-products">
         <AppLink href="/competitor-products">
-          <i className="icon icon-orders" />
+          <i className="icon icon-navigation" />
           <span>Bản Đồ</span>
         </AppLink>
       </Menu.Item>

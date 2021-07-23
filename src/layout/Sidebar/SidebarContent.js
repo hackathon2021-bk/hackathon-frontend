@@ -11,7 +11,6 @@ import {Button, Card, Dropdown, Menu, message} from "antd";
 import {DownOutlined} from '@ant-design/icons';
 import SidebarLogo from "./SidebarLogo";
 
-
 function handleMenuClick(e) {
   message.info('Click on menu item.', e);
 }
@@ -40,16 +39,18 @@ function SidebarContent() {
   return (
     <>
       <SidebarLogo/>
-      <div className="gx-layout-sider-header">
-      </div>
       <div className="gx-sidebar-content">
         <Menu
           defaultOpenKeys={[defaultOpenKeys]}
           selectedKeys={[selectedKeys]}
           theme="dark"
-          mode="inline"
+          mode="vertical"
         >
-          <Menu.ItemGroup key="stations" className="gx-menu-group" title="Chọn trạm">
+          <Menu.ItemGroup key="stations" className="gx-menu-group" title={
+            <>
+            <div style={{color: 'white!important'}}>Chọn trạm</div>
+            </>
+          } >
             <Menu.Item key="stations">
               <Dropdown overlay={menu}>
               <Button >
@@ -59,44 +60,48 @@ function SidebarContent() {
             </Menu.Item>
           </Menu.ItemGroup>
 
-          <Menu.ItemGroup key="applications" className="gx-menu-group" title="Chức năng">
+          <Menu.ItemGroup key="applications" className="gx-menu-group" title={
+            <>
+            <div style={{color: 'white!important'}}>Chức năng</div>
+            </>
+          }>
             <Menu.Item key="summary">
               <AppLink href="/summary">
-                <i className="icon icon-orders" />
-                <span>Tổng hợp</span>
+                <i className="icon icon-dasbhoard" style={{color: 'white'}}/>
+                <span style={{color: 'white'}}>Tổng hợp</span>
               </AppLink>
             </Menu.Item>
 
             <Menu.Item key="analysis">
               <AppLink href="/analysis">
-                <i className="icon icon-geo-location" />
-                <span>Phân tích</span>
+                <i className="icon icon-data-display" style={{color: 'white'}}/>
+                <span style={{color: 'white'}}>Phân tích</span>
               </AppLink>
             </Menu.Item>
 
             <Menu.Item key="history-data">
               <AppLink href="/historydata">
-                <i className="icon icon-geo-location" />
-                <span>Dữ liệu quá khứ</span>
+                <i className="icon icon-table" style={{color: 'white'}}/>
+                <span style={{color: 'white'}}>Dữ liệu quá khứ</span>
               </AppLink>
             </Menu.Item>
 
             <Menu.Item key="predict">
               <AppLink href="/predict">
-                <i className="icon icon-geo-location" />
-                <span>Dự đoán</span>
+                <i className="icon icon-timeline" style={{color: 'white'}}/>
+                <span style={{color: 'white'}}>Dự đoán</span>
               </AppLink>
             </Menu.Item>
 
             <Menu.Item key="settings">
               <AppLink href="/settings">
-                <i className="icon icon-geo-location" />
-                <span>Cài đặt</span>
+                <i className="icon icon-timeline-new" style={{color: 'white'}}/>
+                <span style={{color: 'white'}}>Cài đặt</span>
               </AppLink>
             </Menu.Item>
           </Menu.ItemGroup>
         </Menu>
-      </div>
+        </div>
     </>
   );
 }
