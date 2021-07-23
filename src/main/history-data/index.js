@@ -11,7 +11,9 @@ function HomePage() {
         <SimpleTable/>
       </Col>
       <Col  span={6} offset={6}>
-        <Button className="gx-mb-0" type="primary">Tải xuống</Button>
+      <a href="/SonTay.csv" download><Button className="gx-mb-0" type="primary">Tải xuống</Button></a>
+        
+
       </Col>
     </Row>
   );
