@@ -1,6 +1,6 @@
-import Layout from "layout";
+import Layout from "layout/map";
 
-function withLayout(PageContent) {
+function withLayoutMap(PageContent) {
   return function Page(props) {
     return (
       <Layout>
@@ -10,4 +10,4 @@ function withLayout(PageContent) {
   };
 }
 
-export default withLayout;
+export default withLayoutMap;

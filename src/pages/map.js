@@ -1,4 +1,4 @@
-import withLayout from "hoc/with-layout";
+import withLayoutMap from "hoc/with-layout-map";
 import MapContent from "main/map/";
 
-export default withLayout(MapContent);
+export default withLayoutMap(MapContent);
