@@ -10,19 +10,8 @@ import { SettingActions } from "app-redux/settings";
 import {Button, Card, Dropdown, Menu, message} from "antd";
 import {DownOutlined} from '@ant-design/icons';
 import SidebarLogo from "./SidebarLogo";
-
-
-function handleMenuClick(e) {
-  message.info('Click on menu item.', e);
-}
-
-const menu = (
-  <Menu onClick={handleMenuClick}>
-    <Menu.Item key="1">Products</Menu.Item>
-    <Menu.Item key="2">Apps</Menu.Item>
-    <Menu.Item key="3">Blogs</Menu.Item>
-  </Menu>
-);
+import data from "data/data";
+import { MapActions } from "app-redux/map";
 
 
 function SidebarContent() {
@@ -30,6 +19,34 @@ function SidebarContent() {
   const router = useRouter();
   const pathname = useSelector((state) => state.settings.pathname);
   const user = useSelector((state) => state.auth.user);
+  const stationId = useSelector((state) => state.map.stationId);
+ 
+  const onSetStationId = (stationId) => {
+    dispatch(MapActions.updateStationId(stationId));
+  };
+
+  const handleMenuClick = ((key) => {
+    // console.log('key :>> ', key);
+    onSetStationId(key);
+    console.log('global station id :>> ', stationId);
+  });
+
+  const getMenu = ((lstSubscribedStations) => {
+    return  (
+      <Menu 
+        selectedKeys={lstSubscribedStations.map( station => station.id)}
+        onClick={(e) => handleMenuClick(e.key)}
+      >
+        {
+          lstSubscribedStations.map((station) => (
+            <Menu.Item key={station.id}  >{`${station.name}`} </Menu.Item> 
+          ))
+        }
+      </Menu>
+    );
+  });
+
+  const menu = getMenu(data['data']);
 
   useEffect(() => {
     dispatch(SettingActions.setPathname(router.pathname));
