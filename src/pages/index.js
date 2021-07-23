@@ -1,4 +1,4 @@
-import withLayoutApp from "hoc/with-layout-app";
-import PageContent from "main/summary/";
+import withLayoutApp from "hoc/with-layout-main";
+import PageContent from "main/home/";
 
 export default withLayoutApp(PageContent);
