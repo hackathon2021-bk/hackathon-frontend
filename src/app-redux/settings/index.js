@@ -18,6 +18,9 @@ const SettingActions = {
   setPathname(path) {
     return { type: SET_PATH_NAME, payload: path };
   },
+  onNavStyleChange(navStyle) {
+    return {type: NAV_STYLE, navStyle};
+  }
 };
 
 const initialState = {
