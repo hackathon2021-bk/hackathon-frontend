@@ -1,5 +1,5 @@
 import React from "react";
-import {GoogleMap, InfoWindow, Marker, withGoogleMap,withScriptjs} from "react-google-maps";
+import {GoogleMap, SymbolPath, Marker, withGoogleMap,withScriptjs} from "react-google-maps";
 import { key } from "constants/KeySetting";
 import data from "data/data";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,31 +17,23 @@ const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
       <Marker 
         position={{ lat: marker.position.lat, lng: marker.position.lon}}
         onClick={() => props.onMarkerClick(marker)} 
+        label={{
+          text: marker.known === 1 ? marker.value : null, 
+          color:"white", 
+          fontSize:"15px",
+          fontWeight:"bold"
+        }}
+        icon={{
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 30,
+          fillColor: marker.known === 1 ? "blue" : "red",
+          fillOpacity: 2,
+          strokeWeight: 2,
+        }}
       />
     ))}
   </GoogleMap>
 ));
-
-
-// withScriptjs(withGoogleMap( props => (
-//   <GoogleMap
-//     googleMapURL={props.googleMapURL}
-//     loadingElement={<div style={{ height: `100%` }} />}
-//     containerElement={<div style={{ height: `400px` }} />}
-//     mapElement={<div style={{ height: `100%` }} />}
-//     center={props.center}
-//     defaultZoom={props.zoom}
-//     // onGoogleApiLoaded={({ map, maps }) => renderMarkers(data, map, maps)}
-//     // yesIWantToUseGoogleMapApiInternals={true}
-//   />
-    /* {props.markers.map((marker, index) => (
-      <Marker
-        position={marker.position} 
-        onClick={() => props.onClick(marker)}
-      />
-//     ))} */
-//   // </GoogleMap>
-// )));
 
 export default function SimpleMap(){
   const dispath = useDispatch();
@@ -51,25 +43,13 @@ export default function SimpleMap(){
     dispath(MapActions.updateStationId(stationId));
   };
   
-  const markers = data['data'].map(
+  let markers = data['data'].map(
     (dtPoint,index) => ({
       id: index,
       position: {lat: dtPoint.latitude, lon: dtPoint.longitude},
-      label: {
-        text: dtPoint['known'] === 1 ? Math.round(dtPoint['data_daily']['H'][Math.floor(Math.random() * dtPoint['data_daily']['H'].length)]).toString() : null, 
-        color:"white", 
-        fontSize:"15px",
-        fontWeight:"bold"
-      }, 
-      icon: {
-        // path: maps.SymbolPath.CIRCLE,
-        scale: 30,
-        fillColor: dtPoint['known'] === 1 ? "blue" : "red",
-        fillOpacity: 2,
-        strokeWeight: 2
-      },
+      value: dtPoint['known'] === 1 ? Math.round(dtPoint['data_daily']['H'][0]).toString() : null,
+      known: dtPoint['known']
   }));
-  console.log('markers :>> ', markers);
 
   // const renderMarkers = (data, map, maps) => {
   //   let markers = [];
@@ -114,7 +94,6 @@ export default function SimpleMap(){
 
   const handleMarkerClick = (targetMarker) => {
     onSetStationId(targetMarker.id);
-    console.log('object :>> ', targetMarker.id);
   } 
 
   return (
@@ -129,7 +108,6 @@ export default function SimpleMap(){
       <BaseMapWithMarker
         {...props}
         onMarkerClick={handleMarkerClick}
-        // googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key}`}
         googleMapURL={props.googleMapURL}
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `600px` }} />}
