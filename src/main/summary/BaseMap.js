@@ -10,7 +10,7 @@ import { render } from "react-dom";
 
 const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
-    zooms={props.zoom}
+    defaultZoom={props.zoom}
     center={props.center}
   >
     <Marker 
