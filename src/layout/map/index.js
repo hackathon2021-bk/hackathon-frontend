@@ -1,13 +1,11 @@
 import { Layout } from "antd";
 
-import Sidebar from "layout/Sidebar";
-import Topbar from "layout/Topbar";
+import Topbar from "./Topbar";
 import Footer from "./Footer";
 
 function AppLayout({ children }) {
   return (
     <Layout className="gx-app-layout">
-      <Sidebar />
       <Layout>
         <Topbar />
         <Layout.Content className="gx-layout-content gx-container-wrap">

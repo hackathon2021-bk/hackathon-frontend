@@ -4,8 +4,8 @@ import Image from "next/image";
 import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
-import HorizontalNav from "layout/Topbar/HorizontalNav";
-import UserInfo from "layout/Topbar/UserInfo";
+import HorizontalNav from "./HorizontalNav";
+import UserInfo from "./UserInfo";
 
 import { SettingActions } from "app-redux/settings";
 
@@ -28,7 +28,7 @@ function TopBar() {
                 }}
               />
             </div>
-            <Link href="/">
+            <Link href="/summary">
               <a>
                 <img
                   alt=""
@@ -39,7 +39,7 @@ function TopBar() {
                 />
               </a>
             </Link>
-            <Link href="/">
+            <Link href="/summary">
               <a>
                 <img
                   alt=""

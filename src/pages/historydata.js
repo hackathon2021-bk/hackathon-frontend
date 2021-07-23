@@ -1,4 +1,4 @@
-import withLayout from "hoc/with-layout";
+import withLayoutApp from "hoc/with-layout-app";
 import HistoryDataContent from "main/history-data/";
 
-export default withLayout(HistoryDataContent);
+export default withLayoutApp(HistoryDataContent);

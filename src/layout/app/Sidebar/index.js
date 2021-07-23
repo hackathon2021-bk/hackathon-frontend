@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { Drawer, Layout } from "antd";
 
-import SidebarContent from "layout/Sidebar/SidebarContent";
+import SidebarContent from "./SidebarContent";
 import { SettingActions } from "app-redux/settings";
 import {
   NAV_STYLE_DRAWER,
