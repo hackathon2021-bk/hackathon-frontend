@@ -3,10 +3,6 @@ import {GoogleMap, SymbolPath, Marker, withGoogleMap,withScriptjs} from "react-g
 import { key } from "constants/KeySetting";
 import data from "data/data";
 import { useDispatch, useSelector } from "react-redux";
-import { MapActions } from "app-redux/map";
-import map from "pages/map";
-import { render } from "react-dom";
-
 
 const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
