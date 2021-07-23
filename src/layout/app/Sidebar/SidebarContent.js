@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-
+import { InitActions } from "/app-redux/init";
+import data from "data/data";
 import AppLink from "components/AppLink";
 
 import { SettingActions } from "app-redux/settings";
-import { InitActions } from "app-redux/init";
+import { MapActions } from "app-redux/map";
 
 import {Button, Card, Dropdown, Menu, message} from "antd";
 import {DownOutlined} from '@ant-design/icons';
@@ -15,13 +16,29 @@ import SidebarLogo from "./SidebarLogo";
 
 function SidebarContent() {
   const dispatch = useDispatch();
+  const trick = [];
+  useEffect(() => {
+    let markers = data['data'].map(
+      (dtPoint,index) => ({
+        id: index,
+        position: {lat: dtPoint.latitude, lon: dtPoint.longitude},
+        name: dtPoint['name']
+      }));
+      
+      dispatch(InitActions.setStations(markers));
+    }, trick);
+    
+  const listStations = useSelector((state) => state.init.stationsList);
   const router = useRouter();
   const pathname = useSelector((state) => state.settings.pathname);
   const user = useSelector((state) => state.auth.user);
-  const listStations = useSelector((state) => state.init.stationsList);
   
   let menu = (
-    <Menu onClick={(e) => dispatch(InitActions.setStationId(parseInt(e.key))) }>
+    <Menu onClick={(e) => {
+      dispatch(InitActions.setStationId(parseInt(e.key)));
+      dispatch(MapActions.updateStationId(parseInt(e.key))) 
+      }
+      }>
       {
         listStations.map(station => {
           return (
@@ -47,11 +64,7 @@ function SidebarContent() {
           theme="dark"
           mode="vertical"
         >
-          <Menu.ItemGroup key="stations" className="gx-menu-group" title={
-            <>
-            <div style={{color: 'white!important'}}>Chọn trạm</div>
-            </>
-          } >
+          <Menu.ItemGroup key="stations" className="gx-menu-group" title="Chọn trạm">
             <Menu.Item key="stations">
               <Dropdown overlay={menu}>
               <Button >
@@ -61,11 +74,7 @@ function SidebarContent() {
             </Menu.Item>
           </Menu.ItemGroup>
 
-          <Menu.ItemGroup key="applications" className="gx-menu-group" title={
-            <>
-            <div style={{color: 'white!important'}}>Chức năng</div>
-            </>
-          }>
+          <Menu.ItemGroup key="applications" className="gx-menu-group" title="Chức năng">
             <Menu.Item key="summary">
               <AppLink href="/summary">
                 <i className="icon icon-dasbhoard" style={{color: 'white'}}/>

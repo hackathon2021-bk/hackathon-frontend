@@ -25,8 +25,8 @@ const SidebarLogo = () => {
     navStyle = NAV_STYLE_DRAWER;
   }
 
-  console.log(`current navStyle: ${navStyle}`);
-  console.log(`current navCollapsed: ${navCollapsed}`);
+  // console.log(`current navStyle: ${navStyle}`);
+  // console.log(`current navCollapsed: ${navCollapsed}`);
   return (
     <div className="gx-layout-sider-header" style={{height: '200px'}}>
       {

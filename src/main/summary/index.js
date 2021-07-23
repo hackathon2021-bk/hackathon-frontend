@@ -1,32 +1,10 @@
-<<<<<<< HEAD
 import data from "data/data";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { InitActions } from "../../app-redux/init";
-
-export default function HomePage(props) {
-  const dispath = useDispatch();
-  
-  useEffect(() => {
-    let markers = data['data'].map(
-      (dtPoint,index) => ({
-        id: index,
-        position: {lat: dtPoint.latitude, lon: dtPoint.longitude},
-        name: dtPoint['name']
-    }));
-    
-    dispath(InitActions.setStations(markers));
-  });
-  return <div>okok</div>;
-=======
 import {Card, Col, Row} from "antd";
 import BaseMap from "./BaseMap";
-import data from "data/data";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import InformationCard from "./InformationCard";
 
-function HomePage() {
-  const dispatch = useDispatch();
+export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
 
   const getStationData = (data, stationId) =>{
@@ -70,5 +48,4 @@ function HomePage() {
     </Row>
     
   </>;
->>>>>>> origin/master
 }
