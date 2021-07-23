@@ -1,4 +1,4 @@
-import withLayout from "hoc/with-layout";
+import withLayoutApp from "hoc/with-layout-app";
 import AnalysisContent from "main/analysis/";
 
-export default withLayout(AnalysisContent);
+export default withLayoutApp(AnalysisContent);

@@ -1,4 +1,4 @@
-import withLayout from "hoc/with-layout";
+import withLayoutApp from "hoc/with-layout-app";
 import SettingContent from "main/settings/";
 
-export default withLayout(SettingContent);
+export default withLayoutApp(SettingContent);

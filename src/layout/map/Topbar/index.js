@@ -4,8 +4,8 @@ import Image from "next/image";
 import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
-import HorizontalNav from "layout/Topbar/HorizontalNav";
-import UserInfo from "layout/Topbar/UserInfo";
+import HorizontalNav from "./HorizontalNav";
+import UserInfo from "./UserInfo";
 
 import { SettingActions } from "app-redux/settings";
 
@@ -28,28 +28,28 @@ function TopBar() {
                 }}
               />
             </div>
-            <Link href="/">
+            <Link href="/summary">
               <a>
                 <img
                   alt=""
                   className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo"
-                  src="/images/wave-logo.svg"
+                  src="/images/w-logo.png"
                   width="55"
                   height="55"
                 />
               </a>
             </Link>
-            {/* <Link href="/">
+            <Link href="/summary">
               <a>
                 <img
                   alt=""
                   className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
-                  src="/images/wave-logo.svg"
+                  src="/images/logo.png"
                   width="55"
                   height="55"
                 />
               </a>
-            </Link> */}
+            </Link>
 
             <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
               <HorizontalNav />
