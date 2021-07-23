@@ -6,22 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import AppLink from "components/AppLink";
 
 import { SettingActions } from "app-redux/settings";
+import { InitActions } from "app-redux/init";
 
 import {Button, Card, Dropdown, Menu, message} from "antd";
 import {DownOutlined} from '@ant-design/icons';
 import SidebarLogo from "./SidebarLogo";
-
-function handleMenuClick(e) {
-  message.info('Click on menu item.', e);
-}
-
-const menu = (
-  <Menu onClick={handleMenuClick}>
-    <Menu.Item key="1">Products</Menu.Item>
-    <Menu.Item key="2">Apps</Menu.Item>
-    <Menu.Item key="3">Blogs</Menu.Item>
-  </Menu>
-);
 
 
 function SidebarContent() {
@@ -29,7 +18,19 @@ function SidebarContent() {
   const router = useRouter();
   const pathname = useSelector((state) => state.settings.pathname);
   const user = useSelector((state) => state.auth.user);
-
+  const listStations = useSelector((state) => state.init.stationsList);
+  
+  let menu = (
+    <Menu onClick={(e) => dispatch(InitActions.setStationId(parseInt(e.key))) }>
+      {
+        listStations.map(station => {
+          return (
+            <Menu.Item key={station['id']}>{station['name']}</Menu.Item>
+          )
+        })
+      }
+  </Menu>
+  )
   useEffect(() => {
     dispatch(SettingActions.setPathname(router.pathname));
   }, [router.pathname, dispatch]);
