@@ -36,11 +36,11 @@ const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
 ));
 
 export default function SimpleMap(){
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const stationId = useSelector((state) => state.map.stationId);
 
   const onSetStationId = (stationId) => {
-    dispath(MapActions.updateStationId(stationId));
+    dispatch(MapActions.updateStationId(stationId));
   };
   
   let markers = data['data'].map(
