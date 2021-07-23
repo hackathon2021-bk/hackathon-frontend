@@ -1,15 +1,36 @@
 import {Card, Row, Col, message, Popconfirm, Switch} from "antd";
-import Customized from "./Customized";
+import CheckboxGroups from "./CheckboxGroups";
+import BasicTextbox from "./BasicTextbox";
+import BasicSwitch from "./BasicSwitch";
+import Basic from "./Basic";
 
 function HomePage() {
   return <div>
     <Card>
-      <Row>
-        <Col>
-        <Switch defaultChecked />
-        <Customized/>
-        </Col>
-      </Row>
+          <Card className="gx-card" >
+              <Row gutter={[32,32]}>
+                <Col span={7}></Col>
+                <Col span={5}><h2>Bật cảnh báo:</h2></Col>
+                <Col span={7}><BasicSwitch /></Col>
+                <Col span={5}></Col>
+
+                <Col span={7}></Col>
+                <Col span={5}><h2>Email:</h2></Col>
+                <Col span={9}><BasicTextbox /></Col>
+                <Col span={3}></Col>
+
+                <Col span={7}></Col>
+                <Col span={5}><h2>Tần suất:</h2></Col>
+                <Col span={9}><CheckboxGroups /></Col>
+                <Col span={3}></Col>
+
+                <Col span={6}></Col>
+                <Col span={6}></Col>
+                <Col span={6}><Basic/></Col>
+                <Col span={6}></Col>
+              </Row>
+            
+          </Card>
     </Card>
   </div>;
 }
