@@ -27,7 +27,7 @@ function TopBar() {
                 }}
               />
             </div>
-            <Link href="/summary">
+            <Link href="#qh">
               <a>
                 <img
                   alt=""
@@ -38,7 +38,7 @@ function TopBar() {
                 />
               </a>
             </Link>
-            <Link href="/summary">
+            <Link href="#qh">
               <a>
                 <img
                   alt=""
