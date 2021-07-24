@@ -35,7 +35,6 @@ const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
 
 export default function SimpleMap(defaultProps){
   const dispatch = useDispatch();
-  const stationId =  defaultProps.props.stationId;
   const data = defaultProps.props.data;
 
   const onSetStationId = (stationId) => {
@@ -50,7 +49,7 @@ export default function SimpleMap(defaultProps){
       known: dtPoint['known']
   }));
 
-  console.log('station Data check update?:>> ', data);
+  // console.log('station Data check update?:>> ', data);
    
   const props = {
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${key}`,
