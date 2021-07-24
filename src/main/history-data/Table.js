@@ -27,14 +27,31 @@ dataIndex: 'Q'
 title: 'Lượng mưa',
   width: 150,
   dataIndex: 'rainfall'
-}];
+},{
+  title: 'Mực nước dự đoán',
+  width: 150,
+  dataIndex: 'predict_waterlevel'
+},{
+  title: 'Lưu lượng dự đoán',
+  width: 150,
+  dataIndex: 'predict_discharge'
+}
+
+];
 
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-const SimpleTable = () => {
+function getRandomIntInRange(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min) / 100; //The maximum is exclusive and the minimum is inclusive
+}
+
+
+const SimpleTable = (props) => {
   const dataStation = useSelector((state) => state.map.stationData);
   const stationId = useSelector((state) => state.map.stationId);
   const getStationData = (data, stationId) =>{
@@ -50,18 +67,28 @@ const SimpleTable = () => {
   const data = [];
 
   for (let i = 4382; i >=0; i--) {
+    let waterlevel = SonTay[getRandomInt(4382- stationId)].H;
+    let discharge = SonTay[getRandomInt(4382- stationId)].Q;
     data.push({
         key: 4382-i,
         date: SonTay[getRandomInt(4382- stationId)].date,
         avgtemp: SonTay[getRandomInt(4382-stationId)].avgtemp,
         evaporation: SonTay[getRandomInt(4382- stationId)].evaporation,
-        H: SonTay[getRandomInt(4382- stationId)].H,
-        Q: SonTay[getRandomInt(4382- stationId)].Q,
+        H: waterlevel ,
+        Q: discharge,
         rainfall: SonTay[getRandomInt(4382- stationId)].rainfall,
+        predict_waterlevel: Math.round(waterlevel * getRandomIntInRange(90,110), 2),
+        predict_discharge: Math.round(discharge  * getRandomIntInRange(90,110), 2),
     });
   }
-
-  return (
+  console.log("bool props.checked >>", props.props.checked);
+  return props.checked ? 
+  (
+    <Card title={<span  style={{fontSize: '20px'}}>{curStationData.name}</span>}>
+      hello
+    </Card>
+  )
+  : (
     <Card title={<span  style={{fontSize: '20px'}}>{curStationData.name}</span>}>
       <Table className="gx-table-responsive" columns={columns} dataSource={data} pagination={{pageSize: 50}}
              scroll={{y: 450}}/>

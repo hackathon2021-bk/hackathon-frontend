@@ -18,7 +18,7 @@ const InitActions = {
 const initialState = {
     stationsList: [],
     stationId:  1,   
-    email: ''   
+    email: ''
 };
 
 function reducer(state = initialState, action) {
