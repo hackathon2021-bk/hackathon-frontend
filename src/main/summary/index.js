@@ -8,6 +8,8 @@ import { BarChart } from "../../components/Duy-Charts/BarChart";
 import { LineChart } from "../../components/Duy-Charts/LineChart";
 import { AreaChart } from "../../components/Duy-Charts/AreaChart";
 import { sendMail } from 'util/sendMail';
+import { useEffect } from "react";
+
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
   const prepareData = (limit) => {
@@ -15,12 +17,6 @@ export default function HomePage(props) {
     let abv_h = data['threshold']['H'] + 1;
     let abv_q = data['threshold']['Q'] + 1;
 
-    const alertMes = () => {
-      // message.error('Vài chỉ số vượt quá ngưỡng an toàn, thông tin cảnh báo chi tiết sẽ được gửi về mail bạn đã đăng ký!');
-      let sentMessage = "Ahihi send ne` :))";
-      sendMail(sentMessage);
-    };
-    alertMes();
     return {
       temperature: [{
         name: 'Average temperature',
@@ -63,13 +59,23 @@ export default function HomePage(props) {
       'humidity': Math.round(dtPoint['data_daily']['humidity'][Math.floor(Math.random() * dtPoint['data_daily']['humidity'].length)]).toString(),
     }
   }
+  const alertMes = (email) => {
+    message.error('Vài chỉ số vượt quá ngưỡng an toàn, thông tin cảnh báo chi tiết sẽ được gửi về mail bạn đã đăng ký!');
+    let sentMessage = "Ahihi send ne` :))";
+    sendMail(sentMessage, email);
+  };
+
+  const email = useSelector((state) => state.init.email);
+  useEffect(() => {
+    alertMes(email);
+  }, []);
 
   const curStationData = getStationData(data, stationId);
 
   const curHour = (new Date()).getHours();
   const categories = [...Array(curHour + 1).keys()].map((hour) => `${hour}:00`);
   const realtimeData = prepareData(curHour + 1);
-  // console.log(realtimeData);
+  console.log(realtimeData);
   return <>
     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
       <Col span={8}>
@@ -89,7 +95,7 @@ export default function HomePage(props) {
             <Col span={24} className="gutter-row">
               <LineChart data={realtimeData.q}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                title={"Lưu lượng trung bình trong 7 ngày"}
+                title={"Dữ Liệu Lưu lượng Thời Gian Thực"}
                 ytitle={"Lưu lượng"}
                 xtitle={"Ngày"}
                 categories={categories}
@@ -100,7 +106,7 @@ export default function HomePage(props) {
             <Col span={24} className="gutter-row">
               <LineChart data={realtimeData.h}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                title={"Mực nước trung bình trong 7 ngày"}
+                title={"Dữ Liệu Mực Nước Thời Gian Thực"}
                 ytitle={"Mực nước"}
                 xtitle={"Ngày"}
                 color={"#be58e0"}
@@ -112,7 +118,8 @@ export default function HomePage(props) {
             <Col span={24} className="gutter-row">
               <AreaChart data={realtimeData.evaporation}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                title={"Bay hơi trung bình trong 7 ngày"}
+                color={"#f0ac37"}
+                title={"Dữ Liệu Bay Hơi Thời Gian Thực"}
                 categories={categories}
               />
 
@@ -120,13 +127,13 @@ export default function HomePage(props) {
           </Row>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={24} className="gutter-row">
-              <BarChart data={realtimeData.rainfall} title={"Lượng mưa trung bình trong 7 ngày"} categories={categories}
+              <BarChart data={realtimeData.rainfall} title={"Dữ Liệu Lượng Mưa Thời Gian Thực"} categories={categories}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }} color={'#5faae3'} />
             </Col>
           </Row>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={24} className="gutter-row">
-              <BarChart data={realtimeData.temperature} title={"Nhiệt độ trung bình trong 7 ngày"} categories={categories}
+              <BarChart data={realtimeData.temperature} title={"Dữ Liệu Nhiệt Độ Thời Gian Thực"} categories={categories}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
             </Col>
           </Row>

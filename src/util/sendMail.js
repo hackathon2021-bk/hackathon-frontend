@@ -3,8 +3,7 @@ import React from "react";
 import emailjs from "emailjs-com";
 import { useSelector } from "react-redux";
 
-export function sendMail(message) {
-  const email = useSelector((state) => state.init.email);
+export function sendMail(message, email) {
   if (email != '') 
   {
     let a =  { message : message,
