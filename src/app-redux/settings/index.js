@@ -19,14 +19,14 @@ const SettingActions = {
     return { type: SET_PATH_NAME, payload: path };
   },
   onNavStyleChange(navStyle) {
-    return {type: NAV_STYLE, navStyle};
+    return { type: NAV_STYLE, navStyle };
   }
 };
 
 const initialState = {
   navCollapsed: false,
   navStyle: NAV_STYLE,
-  pathname: "",
+  pathname: "summary",
   width: 1367,
   locale: {
     languageId: "vietnamese",

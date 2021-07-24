@@ -1,37 +1,50 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import { Menu } from "antd";
-
+import { Alert } from 'antd';
+import { useSelector, useDispatch } from "react-redux";
 import AppLink from "components/AppLink";
-function HorizontalNav() {
-  const pathname = useSelector((state) => state.settings.pathname);
+import { SettingActions } from "app-redux/settings";
+const HorizontalNav = () => {
+  const dispatch = useDispatch();
+  const [selectedKey, setSelectedKey] = useState('summary');
+  const pathname = useSelector((state) => state.settings.pathname).split('/')[1];
+  // alert(pathname);
+  // console.log(pathname);
+  const onUpdatePath = (newPath) => {
+    dispatch(SettingActions.setPathname(newPath))
+  }
 
-  const selectedKeys = pathname.substr(1);
-  const defaultOpenKeys = selectedKeys.split("/")[1];
   return (
-    <Menu
-      defaultOpenKeys={[defaultOpenKeys]}
-      selectedKeys={[selectedKeys]}
-      mode="horizontal"
-    >
-      {/* <Menu.SubMenu
-        popupClassName="gx-menu-horizontal gx-submenu-popup-curve gx-inside-submenu-popup-curve"
-        key="apps"
-        title="Apps"
-      > */}
-      <Menu.Item key="summary">
-        <AppLink href="/summary">
-          <i className="icon icon-all-contacts" />
-          <span>Quản Lý Trạm</span>
-        </AppLink>
-      </Menu.Item>
-      <Menu.Item key="map">
-        <AppLink href="/map">
-          <i className="icon icon-navigation" />
-          <span>Bản Đồ</span>
-        </AppLink>
-      </Menu.Item>
-    </Menu>
+    <>
+      <Menu
+        defaultOpenKeys={['summary']}
+        selectedKeys={[pathname]}
+        onClick={(e) => {
+          if (e.key.length <= 1) {
+            setSelectedKey('summary');
+            onUpdatePath('/summary');
+          }
+          else {
+            setSelectedKey(e.key);
+            onUpdatePath(`/${e.key}`);
+          }
+        }}
+        mode="horizontal"
+      >
+        <Menu.Item key="summary">
+          <AppLink href="/summary">
+            <i className="icon icon-all-contacts" />
+            <span>Quản Lý Trạm</span>
+          </AppLink>
+        </Menu.Item>
+        <Menu.Item key="map">
+          <AppLink href="/map">
+            <i className="icon icon-navigation" />
+            <span>Bản Đồ</span>
+          </AppLink>
+        </Menu.Item>
+      </Menu>
+    </>
   );
 }
 
