@@ -56,7 +56,9 @@ function SidebarContent() {
   useEffect(() => {
     dispatch(SettingActions.setPathname(router.pathname));
   }, [router.pathname, dispatch]);
-
+  const buff = pathname.split('/');
+  const currentSelected = buff[buff.length - 1];
+  // console.log(buff[buff.length - 1]);
   const selectedKeys = pathname.substr(1);
   const defaultOpenKeys = selectedKeys.split("/")[1];
   return (
@@ -65,7 +67,7 @@ function SidebarContent() {
       <div className="gx-sidebar-content pagemenu">
         <Menu
           defaultOpenKeys={[defaultOpenKeys]}
-          selectedKeys={[selectedKeys]}
+          selectedKeys={[currentSelected]}
           theme="dark"
           mode="vertical"
         >
@@ -88,28 +90,28 @@ function SidebarContent() {
             </Menu.Item>
 
             <Menu.Item key="analysis">
-              <AppLink href="/analysis">
+              <AppLink href="/summary/analysis">
                 <i className="icon icon-data-display" style={{ color: 'white' }} />
                 <span style={{ color: 'white' }}>Phân tích</span>
               </AppLink>
             </Menu.Item>
 
-            <Menu.Item key="history-data">
-              <AppLink href="/historydata">
+            <Menu.Item key="historydata">
+              <AppLink href="/summary/historydata">
                 <i className="icon icon-table" style={{ color: 'white' }} />
                 <span style={{ color: 'white' }}>Dữ liệu quá khứ</span>
               </AppLink>
             </Menu.Item>
 
             <Menu.Item key="predict">
-              <AppLink href="/predict">
+              <AppLink href="/summary/predict">
                 <i className="icon icon-timeline" style={{ color: 'white' }} />
                 <span style={{ color: 'white' }}>Dự đoán</span>
               </AppLink>
             </Menu.Item>
 
             <Menu.Item key="settings">
-              <AppLink href="/settings">
+              <AppLink href="/summary/settings">
                 <i className="icon icon-timeline-new" style={{ color: 'white' }} />
                 <span style={{ color: 'white' }}>Cài đặt</span>
               </AppLink>
