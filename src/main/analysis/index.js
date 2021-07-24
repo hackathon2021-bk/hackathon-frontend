@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import {Bar, BarChart, ResponsiveContainer, Tooltip} from "recharts";
-import { Col, Row } from "antd";
+import { useSelector } from "react-redux";
 import data from "data/data";
-import { BarChart } from "components/Charts/BarChart";
-import { LineChart } from "components/Charts/LineChart";
 import styled from "styled-components";
 import { Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined } from '@ant-design/icons';
@@ -67,8 +63,8 @@ const AnalysisPage = () => {
 
   return (
     <>
-      <SelectWrapper>
-        <Menu onClick={handleSelectChange} selectedKeys={[currentSelect]} mode="horizontal">
+      <SelectWrapper >
+        <Menu id="pagemenu" onClick={handleSelectChange} selectedKeys={[currentSelect]} mode="horizontal">
           <Menu.Item key="day" icon={<MailOutlined />} style={{ marginBottom: '0px !important' }}>
             Theo ngày
           </Menu.Item>

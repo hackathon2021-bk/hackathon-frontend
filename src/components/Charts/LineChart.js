@@ -99,7 +99,7 @@ const getChartOption = (title) => {
 }
 export const LineChart = (props) => {
   const chartOptions = getChartOption(props.data[0].name);
-  console.log(props.data[0].name);
+  // console.log(props.data[0].name);
   return (
     <div id="chart">
       <ReactApexChart options={chartOptions} series={props.data} type="line" height={350} />
