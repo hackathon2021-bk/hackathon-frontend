@@ -44,7 +44,7 @@ data.push({
 
 const SimpleTable = () => {
   return (
-    <Card title="Fix Header">
+    <Card title="Dữ liệu thủy văn trạm">
       <Table className="gx-table-responsive" columns={columns} dataSource={data} pagination={{pageSize: 50}}
              scroll={{y: 240}}/>
     </Card>
