@@ -20,7 +20,7 @@ function SidebarContent() {
   useEffect(() => {
     let markers = data['data'].map(
       (dtPoint, index) => ({
-        id: index,
+        id: index+1,
         position: { lat: dtPoint.latitude, lon: dtPoint.longitude },
         name: dtPoint['name']
       }));
@@ -34,7 +34,7 @@ function SidebarContent() {
   const router = useRouter();
   const pathname = useSelector((state) => state.settings.pathname);
   const user = useSelector((state) => state.auth.user);
-
+  console.log('listStation :>> ', listStations);
   let menu = (
     <Menu onClick={(e) => {
       dispatch(InitActions.setStationId(parseInt(e.key)));

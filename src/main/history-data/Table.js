@@ -29,18 +29,9 @@ title: 'Lượng mưa',
   dataIndex: 'rainfall'
 }];
 
-  
-const data = [];
-for (let i = 4382; i >=0; i--) {
-data.push({
-    key: 4382-i,
-    date: SonTay[i].date,
-    avgtemp: SonTay[i].avgtemp,
-    evaporation: SonTay[i].evaporation,
-    H: SonTay[i].H,
-    Q: SonTay[i].Q,
-    rainfall: SonTay[i].rainfall,
-});
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
 const SimpleTable = () => {
@@ -56,10 +47,24 @@ const SimpleTable = () => {
   }
   const curStationData =  getStationData(dataStation, stationId);
 
+  const data = [];
+
+  for (let i = 4382; i >=0; i--) {
+    data.push({
+        key: 4382-i,
+        date: SonTay[getRandomInt(4382- stationId)].date,
+        avgtemp: SonTay[getRandomInt(4382-stationId)].avgtemp,
+        evaporation: SonTay[getRandomInt(4382- stationId)].evaporation,
+        H: SonTay[getRandomInt(4382- stationId)].H,
+        Q: SonTay[getRandomInt(4382- stationId)].Q,
+        rainfall: SonTay[getRandomInt(4382- stationId)].rainfall,
+    });
+  }
+
   return (
     <Card title={<span  style={{fontSize: '20px'}}>{curStationData.name}</span>}>
       <Table className="gx-table-responsive" columns={columns} dataSource={data} pagination={{pageSize: 50}}
-             scroll={{y: 240}}/>
+             scroll={{y: 450}}/>
     </Card>
   );
 };
