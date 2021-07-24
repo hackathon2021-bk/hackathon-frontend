@@ -98,7 +98,7 @@ const getChartOption = (title) => {
   return LineChartOptions;
 }
 export const LineChart = (props) => {
-  const chartOptions = getChartOption(props.data[0].name);
+  const chartOptions = getChartOption(props.title);
   // console.log(props.data[0].name);
   return (
     <div id="chart">

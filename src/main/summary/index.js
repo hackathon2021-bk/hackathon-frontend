@@ -3,10 +3,11 @@ import { Card, Col, Row, message } from "antd";
 import BaseMap from "./BaseMap";
 import { useSelector } from "react-redux";
 import InformationCard from "./InformationCard";
+// giimport InformationCard from "main/map/Components/InformationCard";
 import { BarChart } from "../../components/Duy-Charts/BarChart";
 import { LineChart } from "../../components/Duy-Charts/LineChart";
 import { AreaChart } from "../../components/Duy-Charts/AreaChart";
-import {sendMail } from 'util/sendMail';
+import { sendMail } from 'util/sendMail';
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
   const prepareData = (limit) => {
@@ -18,28 +19,28 @@ export default function HomePage(props) {
       // message.error('Vài chỉ số vượt quá ngưỡng an toàn, thông tin cảnh báo chi tiết sẽ được gửi về mail bạn đã đăng ký!');
       let sentMessage = "Ahihi send ne` :))";
       sendMail(sentMessage);
-    }; 
+    };
     alertMes();
     return {
       temperature: [{
         name: 'Average temperature',
-        data: pred.avg_temp.slice(0,limit)
+        data: pred.avg_temp.slice(0, limit)
       }],
       q: [{
         name: 'Discharge',
-        data: [...pred.Q.slice(0,limit-1), abv_q],
+        data: [...pred.Q.slice(0, limit - 1), abv_q],
       }],
       h: [{
         name: 'Hydology',
-        data: [...pred.H.slice(0,limit), abv_h],
+        data: [...pred.H.slice(0, limit), abv_h],
       }],
       rainfall: [{
         name: 'Rainfall',
-        data: pred.rainfall.slice(0,limit),
+        data: pred.rainfall.slice(0, limit),
       }],
       evaporation: [{
         name: 'Evaporation',
-        data: pred.evaporation.slice(0,limit),
+        data: pred.evaporation.slice(0, limit),
       }]
     }
   }
@@ -64,14 +65,14 @@ export default function HomePage(props) {
   }
 
   const curStationData = getStationData(data, stationId);
-  
+
   const curHour = (new Date()).getHours();
   const categories = [...Array(curHour + 1).keys()].map((hour) => `${hour}:00`);
   const realtimeData = prepareData(curHour + 1);
-  
+
   return <>
-    <Row>
-      <Col span={6}>
+    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Col span={8}>
         <Card className="gx-card" title={`${curStationData['name']}`}>
           <div style={{ padding: "10px" }}>
             <BaseMap />
@@ -81,47 +82,45 @@ export default function HomePage(props) {
           </div>
         </Card>
       </Col>
-      <Col span={18}>
+      <Col span={16}>
         <Card>
-          Chart
-
-          <Row>
-            <Col span={24}>
+          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Col span={24} className="gutter-row">
               <LineChart data={realtimeData.q}
-                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
-                title={"Average Discharge for next 7 Days"} 
-                ytitle={"Discharge"} 
-                xtitle={"Days"} 
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+                title={"Average Discharge for next 7 Days"}
+                ytitle={"Discharge"}
+                xtitle={"Days"}
                 categories={categories}
-                />
+              />
             </Col>
-          </Row>
-          <Row >
-            <Col span={12}>
+          </Row >
+          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Col span={12} className="gutter-row">
               <LineChart data={realtimeData.h}
-                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
-                title={"Average Water Level for next 7 Days"} 
-                ytitle={"Water Level"} 
-                xtitle={"Days"} 
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+                title={"Average Water Level for next 7 Days"}
+                ytitle={"Water Level"}
+                xtitle={"Days"}
                 color={"#be58e0"}
                 categories={categories}
-                />
+              />
             </Col>
-            <Col span={12}>
+            <Col span={12} className="gutter-row">
               <AreaChart data={realtimeData.evaporation}
-                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
-                title={"Average Evaporation for next 7 Days"} 
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+                title={"Average Evaporation for next 7 Days"}
                 categories={categories}
-                />
-                
+              />
+
             </Col>
           </Row>
-          <Row>
-            <Col span={12}>
+          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+            <Col span={12} className="gutter-row">
               <BarChart data={realtimeData.rainfall} title={"Average Rainfall for next 7 Days"} categories={categories}
-                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} color={'#5faae3'}/>
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} color={'#5faae3'} />
             </Col>
-            <Col span={12}>
+            <Col span={12} className="gutter-row">
               <BarChart data={realtimeData.temperature} title={"Average Temperature for next 7 Days"} categories={categories}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
             </Col>

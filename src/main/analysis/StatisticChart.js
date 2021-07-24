@@ -6,26 +6,31 @@ import { LineChart } from "components/Charts/LineChart";
 export const StatisticContent = (props) => {
   return (
     <>
-      <Row>
-        <Col span={10}>
-          <LineChart data={props.data.temperature}
+      <Row style={{ margin: '24px 12px' }}>
+        <Col span={12}>
+          <LineChart
+            data={props.data.temperature}
+            title='Nhiệt độ trung bình'
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
           />
         </Col>
-        <Col span={10}>
+        <Col span={12}>
           <LineChart data={props.data.rainfall}
+            title='Lượng mưa'
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
           />
         </Col>
       </Row>
-      <Row>
-        <Col span={10}>
+      <Row style={{ margin: '12px 12px' }}>
+        <Col span={12}>
           <LineChart data={props.data.q}
+            title='Lưu lượng'
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
           />
         </Col>
-        <Col span={10}>
+        <Col span={12}>
           <BarChart data={props.data.h}
+            title='Mực nước'
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
           />
         </Col>

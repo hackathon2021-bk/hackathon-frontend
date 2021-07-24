@@ -84,6 +84,6 @@ element.style {
 }
 
 body {
-    font-family: 'Quicksand' !important;
+    font-family: "Proxima Nova", "Helvetica Neue", 'Helvetica', 'Arial', 'sans-serif' !important;
     background-color: #F5FBFF;
 }
