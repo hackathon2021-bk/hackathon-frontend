@@ -3,17 +3,20 @@ import {AutoComplete, Card, Col, Row, Text} from "antd";
 
 import {MapActions} from 'app-redux/map';
 import { useDispatch, useSelector } from "react-redux";
-import data from "data/data";
 import { Button } from "antd/lib/radio";
 
-function onSelect(value) {
-}
-
-
 const InformationCard = () => {
+    const dispatch = useDispatch();
+    const stationId = useSelector((state) => state.map.stationId);
+    const data = useSelector((state) => state.map.stationData);
+      
+    const state = {
+        dataSource: [],
+    }
+
     const getStationData = (data, stationId) =>{
         console.log('stationId :>> ', stationId);
-        let dtPoint = data['data'][stationId];
+        let dtPoint = data[stationId-1];
         console.log('dtPoint :>> ', dtPoint);
         return {
             'id': stationId,
@@ -30,15 +33,14 @@ const InformationCard = () => {
         }
     }
 
-    const dispatch = useDispatch();
-    
-    // lay station mac dinh 
-    const stationId = useSelector((state) => state.map.stationId);
-
     const curStationData =  getStationData(data, stationId);
 
-    const state = {
-        dataSource: [],
+    const curSubscribedStations = useSelector((state) => state.map.lstSubscribedStationId);
+
+
+    const getUpdatedData = (data, stationId) => {
+        data[stationId-1]['known'] = 1;
+        return data;
     }
 
     const handleSearch = (value) => {
@@ -48,6 +50,21 @@ const InformationCard = () => {
                 value + value + value,
                 ];
     }
+
+    const handleButtonClick = ()  => {  
+        console.log('curSubscribedStations :>> ', curSubscribedStations);
+        console.log('currentStation :>> ', stationId);
+        console.log('currentStationData Name :>> ', curStationData['name']);
+        console.log('curSubscribedStations.indexOf(stationId) :>> ', curSubscribedStations.indexOf(stationId));
+        if (curSubscribedStations.indexOf(stationId) == -1) { // n eu tram chua dc subsribe
+            let newStationLst = curSubscribedStations.push(stationId);
+            let newData = getUpdatedData(data, stationId);
+
+            MapActions.updateStationData(newData);
+            MapActions.updateSubscribedStationId(newStationLst);
+            console.log('newData :>> ', newData);
+        }
+    };  
 
     // console.log(`curStationData.known :>> images/tramthuydien${curStationData.id}.png`);
     return (
@@ -63,7 +80,6 @@ const InformationCard = () => {
                     <AutoComplete
                     dataSource={state.dataSource}
                     style={{width: 200}}
-                    onSelect={onSelect}
                     onSearch={handleSearch}
                     placeholder="input here"
                     />
@@ -72,7 +88,7 @@ const InformationCard = () => {
             <Row style={{ marginBottom: 8 }} > 
                 <Col className="gutter-row" >
                     <div className="gx-mr-3">
-                        <img width="400px" height="300px" src={`images/tramthuydien${curStationData.id+1}.png`} alt='flying'/>
+                        <img width="400px" height="300px" src={`images/tramthuydien${curStationData.id}.png`} alt='flying'/>
                     </div>
                 </Col>
             </Row>
@@ -148,7 +164,7 @@ const InformationCard = () => {
                     <AutoComplete
                     dataSource={state.dataSource}
                     style={{width: 200}}
-                    onSelect={onSelect}
+                    // onSelect={onSelect}
                     onSearch={handleSearch}
                     placeholder="input here"
                     />
@@ -157,7 +173,7 @@ const InformationCard = () => {
             <Row style={{ marginBottom: 8 }} > 
                 <Col className="gutter-row" >
                     <div className="gx-mr-3">
-                        <img width="400px" height="300" src={`images/tramthuydien${curStationData.id+1}.png`} alt='flying'/>
+                        <img width="400px" height="300" src={`images/tramthuydien${curStationData.id}.png`} alt='flying'/>
                     </div>
                 </Col>
             </Row>
@@ -174,7 +190,7 @@ const InformationCard = () => {
             </Row>
 
             <Row style={{marginBottom: 8, justifyContent: "center"}}>
-                <Button  className="gx-mb-0" type="primary">Đăng ký</Button>
+                <Button  className="gx-mb-0" type="primary" onClick={handleButtonClick}>Đăng ký</Button>
             </Row>
         </>
     );

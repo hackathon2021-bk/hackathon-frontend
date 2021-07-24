@@ -3,6 +3,10 @@ import {GoogleMap, SymbolPath, Marker, withGoogleMap,withScriptjs} from "react-g
 import { key } from "constants/KeySetting";
 import data from "data/data";
 import { useDispatch, useSelector } from "react-redux";
+import { MapActions } from "app-redux/map";
+import map from "pages/map";
+import { render } from "react-dom";
+
 
 const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
@@ -69,7 +73,7 @@ export default function SimpleMap(){
   };
 
   return (
-    <div className="m-4" style={{ height: "400px" }} >
+    <div className="m-4" style={{ height: "300px" }} >
       {/* <GoogleMapReact
         bootstrapURLKeys={{ key, libraries: ["visualization"] }}
         defaultCenter={defaultProps.center}
@@ -82,7 +86,7 @@ export default function SimpleMap(){
         // onMarkerClick={handleMarkerClick}
         googleMapURL={props.googleMapURL}
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
+        containerElement={<div style={{ height: `300px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
     </div>
