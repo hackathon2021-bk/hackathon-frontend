@@ -1,4 +1,5 @@
 import "styles/style.min.css";
+import "styles/home.css";
 import "styles/main.css";
 import Router from "next/router";
 import NProgress from "nprogress";
