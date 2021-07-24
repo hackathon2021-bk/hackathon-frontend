@@ -15,18 +15,19 @@ const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
   >
     <Marker
       position={{ lat: props.marker.position.lat, lng: props.marker.position.lon }}
-      label={{
-        text: props.marker.value,
-        color: "white",
-        fontSize: "15px",
-        fontWeight: "bold"
-      }}
+      // label={{
+      //   text: props.marker.value,
+      //   color: "white",
+      //   fontSize: "15px",
+      //   fontWeight: "bold"
+      // }}
       icon={{
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 30,
+        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+        scale: 1.5,
         fillColor: "blue",
         fillOpacity: 2,
-        strokeWeight: 2,
+        strokeWeight: 1,
+        strokeColor: '#000',
       }}
     />
   </GoogleMap>
