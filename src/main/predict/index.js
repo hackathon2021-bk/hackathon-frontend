@@ -6,7 +6,6 @@ export default function HomePage(props) {
   const stationId = useSelector((state) => state.init.stationId);
   const predictData = data['data'][stationId]['data_predict'];
 
-  console.log(predictData);
   return (
     <div></div>
   );

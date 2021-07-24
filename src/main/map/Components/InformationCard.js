@@ -8,12 +8,10 @@ import { Button } from "antd/lib/radio";
 const InformationCard = (props) => {
     const dispatch = useDispatch();
     const data = props.props.data;
-    console.log('data check info card:>> ', data);
     const curStationData = props.props.curStationData;
-    const curSubscribedStations = props.props['curSubscribedStations'];
+    const lstSubscribedStationId = props.props.lstSubscribedStationId;
     const stationId = props.props.stationId;
-
-
+    
     const onUpdateStationData = (newStationData) => {
         dispatch(MapActions.updateStationData(newStationData));
     };
@@ -39,13 +37,12 @@ const InformationCard = (props) => {
                 ];
     }
 
-    const handleButtonClick = ()  => {  
-        if (curSubscribedStations.indexOf(stationId) == -1) { // n eu tram chua dc subsribe
-            let newStationLst = curSubscribedStations.push(stationId);
+    const handleButtonClick = ()  => {    
+        if (lstSubscribedStationId.indexOf(stationId) == -1) { // n eu tram chua dc subsribe
+            let newStationLst = lstSubscribedStationId.concat(stationId);
             let newData = getUpdatedData(data, stationId);
             onUpdateStationData(newData);
             onUpdateSubscribedStationData(newStationLst);
-            console.log('newData :>> ', newData);
         }
     };  
 
