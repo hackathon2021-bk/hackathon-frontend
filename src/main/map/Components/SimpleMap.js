@@ -50,7 +50,7 @@ export default function SimpleMap(defaultProps) {
       known: dtPoint['known']
     }));
 
-  // console.log('station Data check update?:>> ', data);
+  console.log('station Data check update?:>> ', data);
 
   const props = {
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${key}`,
