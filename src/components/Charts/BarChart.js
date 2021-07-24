@@ -17,7 +17,7 @@ const BarChartOptions = {
     }
   },
   dataLabels: {
-    enabled: true,
+    enabled: false,
     formatter: function (val) {
       return Math.round(val * 100) / 100;
     },

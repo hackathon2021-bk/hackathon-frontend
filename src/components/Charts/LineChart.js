@@ -111,10 +111,10 @@ const LineChartOptions = {
   stroke: {
     curve: 'smooth'
   },
-  title: {
-    text: 'Average High & Low Temperature',
-    align: 'left'
-  },
+  // title: {
+  //   text: 'Average High & Low Temperature',
+  //   align: 'left'
+  // },
   grid: {
     borderColor: '#e7e7e7',
     row: {
@@ -126,13 +126,32 @@ const LineChartOptions = {
     size: 1
   },
   xaxis: {
-    // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-    title: {
-      text: 'Month'
+    // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    position: 'bottom',
+    axisBorder: {
+      show: false
+    },
+    axisTicks: {
+      show: false
+    },
+    crosshairs: {
+      fill: {
+        type: 'gradient',
+        gradient: {
+          colorFrom: '#D8E3F0',
+          colorTo: '#BED1E6',
+          stops: [0, 100],
+          opacityFrom: 0.4,
+          opacityTo: 0.5,
+        }
+      }
+    },
+    tooltip: {
+      enabled: true,
     }
   },
   dataLabels: {
-    enabled: true,
+    enabled: false,
     formatter: function (val) {
       return Math.round(val * 100) / 100;
     },
