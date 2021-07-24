@@ -27,7 +27,9 @@ function SidebarContent() {
       
       dispatch(InitActions.setStations(markers));
     }, trick);
-    
+  
+  
+  const listSubscribedStations = useSelector((state) => state.map.lstSubscribedStationId);
   const listStations = useSelector((state) => state.init.stationsList);
   const router = useRouter();
   const pathname = useSelector((state) => state.settings.pathname);
@@ -41,9 +43,12 @@ function SidebarContent() {
       }>
       {
         listStations.map(station => {
-          return (
-            <Menu.Item key={station['id']}>{station['name']}</Menu.Item>
-          )
+          // neu ton tai tram trong danh sach subscribed thi moi hien Menu Item
+          if (listSubscribedStations.includes(station['id'])){
+            return (
+              <Menu.Item key={station['id']}>{station['name']}</Menu.Item>
+            )
+          }
         })
       }
   </Menu>
