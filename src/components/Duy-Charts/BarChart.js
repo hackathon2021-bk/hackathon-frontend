@@ -85,6 +85,7 @@ export function BarChart (props) {
   overide_option.xaxis.categories = props.categories;
   overide_option.yaxis.labels.formatter = BarChartOptions.yaxis.labels.formatter;
   overide_option.dataLabels.formatter = BarChartOptions.dataLabels.formatter;
+  console.log(overide_option.xaxis.categories);
   if (props.color)
   {
     overide_option.colors[0] = props.color;

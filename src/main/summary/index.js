@@ -3,9 +3,37 @@ import { Card, Col, Row } from "antd";
 import BaseMap from "./BaseMap";
 import { useSelector } from "react-redux";
 import InformationCard from "./InformationCard";
+import { BarChart } from "../../components/Duy-Charts/BarChart";
+import { LineChart } from "../../components/Duy-Charts/LineChart";
+import { AreaChart } from "../../components/Duy-Charts/AreaChart";
 
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
+  const prepareData = (limit) => {
+    let pred = data['data'][stationId]['data_monthly'];
+    return {
+      temperature: [{
+        name: 'Average temperature',
+        data: pred.avg_temp.slice(0,limit)
+      }],
+      q: [{
+        name: 'Discharge',
+        data: pred.Q.slice(0,limit),
+      }],
+      h: [{
+        name: 'Hydology',
+        data: pred.H.slice(0,limit),
+      }],
+      rainfall: [{
+        name: 'Rainfall',
+        data: pred.rainfall.slice(0,limit),
+      }],
+      evaporation: [{
+        name: 'Evaporation',
+        data: pred.evaporation.slice(0,limit),
+      }]
+    }
+  }
 
   const getStationData = (data, stationId) => {
     // console.log('stationId :>> ', stationId);
@@ -27,10 +55,14 @@ export default function HomePage(props) {
   }
 
   const curStationData = getStationData(data, stationId);
+  
+  const curHour = (new Date()).getHours();
+  const categories = [...Array(curHour + 1).keys()].map((hour) => `${hour}:00`);
+  const realtimeData = prepareData(curHour + 1);
 
   return <>
     <Row>
-      <Col span={8}>
+      <Col span={6}>
         <Card className="gx-card" title={`${curStationData['name']}`}>
           <div style={{ padding: "10px" }}>
             <BaseMap />
@@ -40,9 +72,51 @@ export default function HomePage(props) {
           </div>
         </Card>
       </Col>
-      <Col span={16}>
+      <Col span={18}>
         <Card>
           Chart
+
+          <Row>
+            <Col span={24}>
+              <LineChart data={realtimeData.q}
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
+                title={"Average Discharge for next 7 Days"} 
+                ytitle={"Discharge"} 
+                xtitle={"Days"} 
+                categories={categories}
+                />
+            </Col>
+          </Row>
+          <Row >
+            <Col span={12}>
+              <LineChart data={realtimeData.h}
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
+                title={"Average Water Level for next 7 Days"} 
+                ytitle={"Water Level"} 
+                xtitle={"Days"} 
+                color={"#be58e0"}
+                categories={categories}
+                />
+            </Col>
+            <Col span={12}>
+              <AreaChart data={realtimeData.evaporation}
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
+                title={"Average Evaporation for next 7 Days"} 
+                categories={categories}
+                />
+                
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <BarChart data={realtimeData.rainfall} title={"Average Rainfall for next 7 Days"} categories={categories}
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} color={'#5faae3'}/>
+            </Col>
+            <Col span={12}>
+              <BarChart data={realtimeData.temperature} title={"Average Temperature for next 7 Days"} categories={categories}
+                margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
+            </Col>
+          </Row>
         </Card>
       </Col>
     </Row>

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { BarChart } from "./Components/BarChart";
-import { LineChart } from "./Components/LineChart";
-import { AreaChart } from "./Components/AreaChart";
+import { BarChart } from "../../components/Duy-Charts/BarChart";
+import { LineChart } from "../../components/Duy-Charts/LineChart";
+import { AreaChart } from "../../components/Duy-Charts/AreaChart";
 
 import data from "data/data";
 
@@ -35,10 +35,9 @@ export default function HomePage(props) {
     }
   }
   const predictData = prepareData();
-  console.log(predictData);
   return (
     <>
-      <Row style={{marginTop: 5}}>
+      <Row>
         <Col span={24}>
           <LineChart data={predictData.q}
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
@@ -53,7 +52,7 @@ export default function HomePage(props) {
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
         </Col> */}
       </Row>
-      <Row style={{marginTop: 5}}>
+      <Row >
         <Col span={12}>
           <LineChart data={predictData.h}
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }} 
