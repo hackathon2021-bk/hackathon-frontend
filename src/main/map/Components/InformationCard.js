@@ -5,42 +5,30 @@ import {MapActions} from 'app-redux/map';
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd/lib/radio";
 
-const InformationCard = () => {
+const InformationCard = (props) => {
     const dispatch = useDispatch();
-    const stationId = useSelector((state) => state.map.stationId);
-    const data = useSelector((state) => state.map.stationData);
-      
-    const state = {
-        dataSource: [],
+    const data = props.props.data;
+    console.log('data check info card:>> ', data);
+    const curStationData = props.props.curStationData;
+    const curSubscribedStations = props.props['curSubscribedStations'];
+    const stationId = props.props.stationId;
+
+
+    const onUpdateStationData = (newStationData) => {
+        dispatch(MapActions.updateStationData(newStationData));
+    };
+
+    const onUpdateSubscribedStationData = (newStationLst) =>{
+        dispatch(MapActions.updateSubscribedStationId(newStationLst));
     }
-
-    const getStationData = (data, stationId) =>{
-        console.log('stationId :>> ', stationId);
-        let dtPoint = data[stationId-1];
-        console.log('dtPoint :>> ', dtPoint);
-        return {
-            'id': stationId,
-            'known': dtPoint['known'],
-            'name': dtPoint['name'],
-            'latitude': dtPoint['latitude'],
-            'longitude': dtPoint['longitude'],
-            'temperature': Math.round(dtPoint['data_daily']['avg_temp'][Math.floor(Math.random() * dtPoint['data_daily']['avg_temp'].length)]).toString(),
-            'evaporation': Math.round(dtPoint['data_daily']['evaporation'][Math.floor(Math.random() * dtPoint['data_daily']['evaporation'].length)]).toString(),
-            'water_level': Math.round(dtPoint['data_daily']['H'][0]).toString(),
-            'discharge': Math.round(dtPoint['data_daily']['Q'][Math.floor(Math.random() * dtPoint['data_daily']['Q'].length)]).toString(),
-            'rainfall': Math.round(dtPoint['data_daily']['rainfall'][Math.floor(Math.random() * dtPoint['data_daily']['rainfall'].length)]).toString(),
-            'humidity': Math.round(dtPoint['data_daily']['humidity'][Math.floor(Math.random() * dtPoint['data_daily']['humidity'].length)]).toString(),
-        }
-    }
-
-    const curStationData =  getStationData(data, stationId);
-
-    const curSubscribedStations = useSelector((state) => state.map.lstSubscribedStationId);
-
 
     const getUpdatedData = (data, stationId) => {
         data[stationId-1]['known'] = 1;
         return data;
+    }
+
+    const state = {
+        dataSource: [],
     }
 
     const handleSearch = (value) => {
@@ -52,16 +40,11 @@ const InformationCard = () => {
     }
 
     const handleButtonClick = ()  => {  
-        console.log('curSubscribedStations :>> ', curSubscribedStations);
-        console.log('currentStation :>> ', stationId);
-        console.log('currentStationData Name :>> ', curStationData['name']);
-        console.log('curSubscribedStations.indexOf(stationId) :>> ', curSubscribedStations.indexOf(stationId));
         if (curSubscribedStations.indexOf(stationId) == -1) { // n eu tram chua dc subsribe
             let newStationLst = curSubscribedStations.push(stationId);
             let newData = getUpdatedData(data, stationId);
-
-            MapActions.updateStationData(newData);
-            MapActions.updateSubscribedStationId(newStationLst);
+            onUpdateStationData(newData);
+            onUpdateSubscribedStationData(newStationLst);
             console.log('newData :>> ', newData);
         }
     };  

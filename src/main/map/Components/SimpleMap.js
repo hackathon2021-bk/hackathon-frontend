@@ -33,10 +33,10 @@ const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
   </GoogleMap>
 ));
 
-export default function SimpleMap(){
+export default function SimpleMap(defaultProps){
   const dispatch = useDispatch();
-  const stationId = useSelector((state) => state.map.stationId);
-  const data = useSelector((state) => state.map.stationData);
+  const stationId =  defaultProps.props.stationId;
+  const data = defaultProps.props.data;
 
   const onSetStationId = (stationId) => {
     dispatch(MapActions.updateStationId(stationId));
