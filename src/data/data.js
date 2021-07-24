@@ -20,6 +20,7 @@ export default {
             "name": "Trạm Thủy Văn Môi Trường Hà Nội",
             "latitude": 21.0404595,
             "longitude": 105.8517801,
+            "known": 1,
             "data_daily": {
                 "avg_temp": [
                     12.99,
@@ -2203,6 +2204,7 @@ export default {
             "name": "Trạm Thủy văn Sơn Tây",
             "latitude": 21.153536,
             "longitude": 105.5096681,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     12.06,
@@ -4386,6 +4388,7 @@ export default {
             "name": "Trạm Thủy Văn La Phù",
             "latitude": 21.0223784,
             "longitude": 105.3441237,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     8.73,
@@ -6569,6 +6572,7 @@ export default {
             "name": "Trạm thủy văn Thanh Sơn",
             "latitude": 21.1856172,
             "longitude": 105.1682306,
+            "known": "1",
             "data_daily": {
                 "avg_temp": [
                     7.72,
@@ -8752,6 +8756,7 @@ export default {
             "name": "Trạm Khí Tượng Thủy Văn Nông Nghiệp Ba Vì",
             "latitude": 21.102624,
             "longitude": 105.427629,
+            "known": 1,
             "data_daily": {
                 "avg_temp": [
                     11.68,
@@ -10935,6 +10940,7 @@ export default {
             "name": "Trạm Thuỷ văn Lâm Sơn",
             "latitude": 20.8779697,
             "longitude": 105.494607,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     18.79,
@@ -13118,6 +13124,7 @@ export default {
             "name": "Trạm Khí Tượng Thủy Văn - ĐH Lâm Nghiệp",
             "latitude": 20.9152896,
             "longitude": 105.5715567,
+            "known": 7,
             "data_daily": {
                 "avg_temp": [
                     16.36,
@@ -15301,6 +15308,7 @@ export default {
             "name": "Trạm thủy văn Ba Thá",
             "latitude": 20.8055109,
             "longitude": 105.7061945,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     29.53,
