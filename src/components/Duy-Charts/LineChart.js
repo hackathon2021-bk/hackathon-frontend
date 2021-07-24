@@ -109,7 +109,8 @@ const LineChartOptions = {
     enabled: true,
   },
   stroke: {
-    curve: 'smooth'
+    curve: 'smooth',
+    width: 2,
   },
   title: {
     text: 'Average High & Low Temperature',
@@ -170,8 +171,7 @@ export const LineChart = (props) => {
   overide_option.yaxis.labels.formatter = BarChartOptions.yaxis.labels.formatter;
   overide_option.dataLabels.formatter = BarChartOptions.dataLabels.formatter;
 
-  if (props.color)
-  {
+  if (props.color) {
     overide_option.colors[0] = props.color;
     overide_option.dataLabels.style.colors[0] = props.color;
   }

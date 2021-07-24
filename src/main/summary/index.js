@@ -77,7 +77,7 @@ export default function HomePage(props) {
           <div style={{ padding: "10px" }}>
             <BaseMap />
           </div>
-          <div style={{ padding: "10px" }}>
+          <div style={{ padding: "0px" }}>
             <InformationCard />
           </div>
         </Card>
@@ -88,9 +88,9 @@ export default function HomePage(props) {
             <Col span={24} className="gutter-row">
               <LineChart data={realtimeData.q}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                title={"Average Discharge for next 7 Days"}
-                ytitle={"Discharge"}
-                xtitle={"Days"}
+                title={"Lưu lượng trung bình trong 7 ngày"}
+                ytitle={"Lưu lượng"}
+                xtitle={"Ngày"}
                 categories={categories}
               />
             </Col>
@@ -99,9 +99,9 @@ export default function HomePage(props) {
             <Col span={12} className="gutter-row">
               <LineChart data={realtimeData.h}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                title={"Average Water Level for next 7 Days"}
-                ytitle={"Water Level"}
-                xtitle={"Days"}
+                title={"Mực nước trung bình trong 7 ngày"}
+                ytitle={"Mực nước"}
+                xtitle={"Ngày"}
                 color={"#be58e0"}
                 categories={categories}
               />
@@ -109,7 +109,7 @@ export default function HomePage(props) {
             <Col span={12} className="gutter-row">
               <AreaChart data={realtimeData.evaporation}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-                title={"Average Evaporation for next 7 Days"}
+                title={"Bay hơi trung bình trong 7 ngày"}
                 categories={categories}
               />
 
@@ -117,11 +117,11 @@ export default function HomePage(props) {
           </Row>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={12} className="gutter-row">
-              <BarChart data={realtimeData.rainfall} title={"Average Rainfall for next 7 Days"} categories={categories}
+              <BarChart data={realtimeData.rainfall} title={"Lượng mưa trung bình trong 7 ngày"} categories={categories}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }} color={'#5faae3'} />
             </Col>
             <Col span={12} className="gutter-row">
-              <BarChart data={realtimeData.temperature} title={"Average Temperature for next 7 Days"} categories={categories}
+              <BarChart data={realtimeData.temperature} title={"Nhiệt độ trung bình trong 7 ngày"} categories={categories}
                 margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
             </Col>
           </Row>
