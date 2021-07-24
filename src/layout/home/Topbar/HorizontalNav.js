@@ -14,13 +14,14 @@ function HorizontalNav() {
       selectedKeys={[selectedKeys]}
       mode="horizontal"
     >
+
       <Menu.Item key="summary">
           <i className="icon icon-search-new" />
-          <span>Mô hình giải pháp</span>
+          <span><a href="#mohinh">Mô hình giải pháp</a></span>
       </Menu.Item>
       <Menu.Item key="map">
           <i className="icon icon-orders" />
-          <span>Lợi ích giải pháp</span>
+          <span><a href="#loiich">Lợi ích của giải pháp</a></span>
       </Menu.Item>
       <Menu.Item key="signin">
         <AppLink href="/signin">
