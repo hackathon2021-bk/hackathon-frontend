@@ -96,7 +96,7 @@ const getChartOption = (title) => {
 export const BarChart = (props) => {
   return (
     <div id="chart">
-      <ReactApexChart options={getChartOption(props.data[0].name)} series={props.data} type="bar" height={350} />
+      <ReactApexChart options={getChartOption(props.title)} series={props.data} type="bar" height={350} />
     </div>
   );
 }

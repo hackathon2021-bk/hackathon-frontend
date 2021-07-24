@@ -40,9 +40,9 @@ const AnalysisPage = () => {
     return initialData;
   }
 
-  const [currentSelectKey, setCurrentSelectKey] = useState('data_yearly');
+  const [currentSelectKey, setCurrentSelectKey] = useState('data_weekly');
   const statisticData = getInitialData(stationId, currentSelectKey);
-  const [currentSelect, setCurrentSelect] = useState('day');
+  const [currentSelect, setCurrentSelect] = useState('week');
   const handleSelectChange = (e) => {
     setCurrentSelect(e.key);
     switch (e.key) {
@@ -65,12 +65,12 @@ const AnalysisPage = () => {
     <>
       <SelectWrapper >
         <Menu id="pagemenu" onClick={handleSelectChange} selectedKeys={[currentSelect]} mode="horizontal">
-          <Menu.Item key="day" icon={<MailOutlined />} style={{ marginBottom: '0px !important' }}>
+          {/* <Menu.Item key="day" icon={<MailOutlined />} style={{ marginBottom: '0px !important' }}>
             Theo ngày
-          </Menu.Item>
-          {/* <Menu.Item key="week" icon={<AppstoreOutlined />} style={{ marginBottom: '0px !important' }}>
-            Theo tuần
           </Menu.Item> */}
+          <Menu.Item key="week" icon={<AppstoreOutlined />} style={{ marginBottom: '0px !important' }}>
+            Theo tuần
+          </Menu.Item>
           <Menu.Item key="month" icon={<AppstoreOutlined />} style={{ marginBottom: '0px !important' }}>
             Theo tháng
           </Menu.Item>
