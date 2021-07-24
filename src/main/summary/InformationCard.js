@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { AutoComplete, Card, Col, Row, Text } from "antd";
-
+import { Table, Tag, Space } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import data from "data/data";
 import { Button } from "antd/lib/radio";
-
-function onSelect(value) {
-}
 
 
 const InformationCard = () => {
@@ -32,11 +29,86 @@ const InformationCard = () => {
     const stationId = useSelector((state) => state.map.stationId);
 
     const curStationData = getStationData(data, stationId);
+    const columns = [
+        {
+            title: '',
+            dataIndex: 'name',
+            key: 'name',
+            render: text => <a>{text}</a>,
+        },
+        {
+            title: '',
+            dataIndex: 'number',
+            key: 'age',
+        },
+        {
+            title: '',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: tags => (
+                <>
+                    {tags.map(tag => {
+                        let color = tag.length > 5 ? 'geekblue' : 'green';
+                        if (tag === 'dangerous') {
+                            color = 'volcano';
+                        }
+                        return (
+                            <Tag color={color} key={tag}>
+                                {tag.toUpperCase()}
+                            </Tag>
+                        );
+                    })}
+                </>
+            ),
+        },
+    ];
 
+    const stationData = [
+        {
+            key: '1',
+            name: 'Nhiệt độ:',
+            number: curStationData['temperature'],
+            tags: ['normal'],
+        },
+        {
+            key: '2',
+            name: 'Mực nước:',
+            number: curStationData['water_level'],
+            tags: ['dangerous'],
+        },
+        {
+            key: '3',
+            name: 'Lưu lượng:',
+            number: curStationData['discharge'],
+
+            tags: ['nice'],
+        },
+        {
+            key: '4',
+            name: 'Lượng mưa:',
+            number: curStationData['rainfall'],
+
+            tags: ['nice'],
+        },
+        {
+            key: '5',
+            name: 'Độ ẩm:',
+            number: curStationData['humidity'],
+
+            tags: ['normal'],
+        },
+        {
+            key: '5',
+            name: 'Bay hơi:',
+            number: curStationData['evaporation'],
+
+            tags: ['normal'],
+        },
+    ];
     // console.log(`curStationData.known :>> images/tramthuydien${curStationData.id}.png`);
     return (
         <>
-            <Row style={{ marginBottom: 8, justifyContent: "center" }}>
+            {/* <Row style={{ marginBottom: 8, justifyContent: "center" }}>
                 <Col span={8} className="gutter-row" style={{ fontSize: "large" }}>
                     Nhiệt độ:
                 </Col>
@@ -89,6 +161,9 @@ const InformationCard = () => {
                     {curStationData['evaporation']}
                 </Col>
             </Row>
+       
+        */}
+            <Table columns={columns} dataSource={stationData} pagination={false} showHeader={false} />
         </>
     );
 

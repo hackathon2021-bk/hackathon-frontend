@@ -12,7 +12,7 @@ const InformationCard = (props) => {
     const curStationData = props.props.curStationData;
     const lstSubscribedStationId = props.props.lstSubscribedStationId;
     const stationId = props.props.stationId;
-    
+
     const onUpdateStationData = (newStationData) => {
         dispatch(MapActions.updateStationData(newStationData));
     };
@@ -38,7 +38,7 @@ const InformationCard = (props) => {
         ];
     }
 
-    const handleButtonClick = ()  => {    
+    const handleButtonClick = () => {
         if (lstSubscribedStationId.indexOf(stationId) == -1) { // n eu tram chua dc subsribe
             let newStationLst = lstSubscribedStationId.concat(stationId);
             let newData = getUpdatedData(data, stationId);
