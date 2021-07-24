@@ -6572,7 +6572,7 @@ export default {
             "name": "Trạm thủy văn Thanh Sơn",
             "latitude": 21.1856172,
             "longitude": 105.1682306,
-            "known": "1",
+            "known": 1,
             "data_daily": {
                 "avg_temp": [
                     7.72,
@@ -13124,7 +13124,7 @@ export default {
             "name": "Trạm Khí Tượng Thủy Văn - ĐH Lâm Nghiệp",
             "latitude": 20.9152896,
             "longitude": 105.5715567,
-            "known": 7,
+            "known": 1,
             "data_daily": {
                 "avg_temp": [
                     16.36,
