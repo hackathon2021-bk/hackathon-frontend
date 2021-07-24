@@ -12,6 +12,7 @@
   "dependencies": {
     "antd": "^4.16.8",
     "apexcharts": "^3.27.3",
+    "emailjs-com": "^3.2.0",
     "google-map-react": "^2.1.10",
     "mdbreact": "^5.1.0",
     "next": "11.0.1",

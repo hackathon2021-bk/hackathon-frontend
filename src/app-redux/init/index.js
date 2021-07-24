@@ -1,6 +1,7 @@
 
 const SET_STATIONS = "set_stations";
 const SET_CURRENT_STATION_ID = "set_current_station_id";
+const SET_EMAIL = "set_alert_email";
 
 const InitActions = {
   setStations(stationsList) {
@@ -8,12 +9,16 @@ const InitActions = {
   },
   setStationId(stationId) {
     return { type: SET_CURRENT_STATION_ID, payload: stationId };
+  },
+  setEmail(email) {
+    return { type: SET_EMAIL, payload: email };
   }
 };
 
 const initialState = {
     stationsList: [],
-    stationId:  1,      
+    stationId:  1,   
+    email: ''   
 };
 
 function reducer(state = initialState, action) {
@@ -22,6 +27,8 @@ function reducer(state = initialState, action) {
       return { ...state, stationsList: action.payload };
     case SET_CURRENT_STATION_ID:
       return { ...state, stationId: action.payload };
+    case SET_EMAIL:
+        return { ...state, email: action.payload };
     default:
       return state;
   }

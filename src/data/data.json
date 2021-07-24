@@ -7,6 +7,13 @@
         "Q": "m3/s",
         "rainfall": "mm"
     },
+    "threshold": {
+        "avg_temp": 40.00,
+        "evaporation": 10.00,
+        "H": 1500.00,
+        "Q": 15000.00,
+        "rainfall": 300.00
+    },
     "data": [
         {
             "id": 1,

@@ -1,16 +1,25 @@
 import data from "data/data";
-import { Card, Col, Row } from "antd";
+import { Card, Col, Row, message } from "antd";
 import BaseMap from "./BaseMap";
 import { useSelector } from "react-redux";
 import InformationCard from "./InformationCard";
 import { BarChart } from "../../components/Duy-Charts/BarChart";
 import { LineChart } from "../../components/Duy-Charts/LineChart";
 import { AreaChart } from "../../components/Duy-Charts/AreaChart";
-
+import {sendMail } from 'util/sendMail';
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
   const prepareData = (limit) => {
     let pred = data['data'][stationId]['data_monthly'];
+    let abv_h = data['threshold']['H'] + 1;
+    let abv_q = data['threshold']['Q'] + 1;
+
+    const alertMes = () => {
+      // message.error('Vài chỉ số vượt quá ngưỡng an toàn, thông tin cảnh báo chi tiết sẽ được gửi về mail bạn đã đăng ký!');
+      let sentMessage = "Ahihi send ne` :))";
+      sendMail(sentMessage);
+    }; 
+    alertMes();
     return {
       temperature: [{
         name: 'Average temperature',
@@ -18,11 +27,11 @@ export default function HomePage(props) {
       }],
       q: [{
         name: 'Discharge',
-        data: pred.Q.slice(0,limit),
+        data: [...pred.Q.slice(0,limit-1), abv_q],
       }],
       h: [{
         name: 'Hydology',
-        data: pred.H.slice(0,limit),
+        data: [...pred.H.slice(0,limit), abv_h],
       }],
       rainfall: [{
         name: 'Rainfall',
@@ -59,7 +68,7 @@ export default function HomePage(props) {
   const curHour = (new Date()).getHours();
   const categories = [...Array(curHour + 1).keys()].map((hour) => `${hour}:00`);
   const realtimeData = prepareData(curHour + 1);
-
+  
   return <>
     <Row>
       <Col span={6}>
