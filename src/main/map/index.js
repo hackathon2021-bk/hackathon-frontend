@@ -10,11 +10,10 @@ function HomePage() {
 
   const data = useSelector((state) => state.map.stationData);
   const stationId = useSelector((state) => state.map.stationId);
-
-  const getStationData = (data, stationId) => {
-    // console.log('stationId :>> ', stationId);
-    let dtPoint = data[stationId - 1];
-    // console.log('dtPoint :>> ', dtPoint);
+  const lstSubscribedStationId = useSelector((state) => state.map.lstSubscribedStationId);
+  
+  const getStationData = (data, stationId) =>{
+    let dtPoint = data[stationId-1];
     return {
       'id': stationId,
       'known': dtPoint['known'],
@@ -31,26 +30,23 @@ function HomePage() {
   }
   const curStationData = getStationData(data, stationId);
 
-  const curSubscribedStations = useSelector((state) => state.map.lstSubscribedStationId);
-
-  const handleChange = () => { };
   const props = {
     data: data,
     stationId, stationId,
     curStationData: curStationData,
-    curSubscribedStations: curSubscribedStations
+    lstSubscribedStationId: lstSubscribedStationId
   }
 
   return (
     <Row>
       <Col span={8}>
         <Card className="gx-card" title="Thông tin trạm">
-          <InformationCard props={props} handleChange={handleChange} />
+          <InformationCard props={props} />
         </Card>
       </Col>
       <Col span={16}>
         <Card className="gx-card" title="Bản đồ">
-          <SimpleMap props={props} handleChange={handleChange} />
+          <SimpleMap props={props}  />
         </Card>
       </Col>
     </Row>

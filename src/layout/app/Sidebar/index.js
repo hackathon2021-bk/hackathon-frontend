@@ -63,7 +63,6 @@ const Sidebar = () => {
     || navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR) && width < TAB_SIZE) {
     drawerStyle = "gx-collapsed-sidebar"
   }
-  console.log(`${drawerStyle}`);
   return (
     <Sider
       className={`gx-app-sidebar ${drawerStyle}  gx-layout-sider-dark`}
