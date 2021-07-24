@@ -9,7 +9,6 @@ const Videohome = () => {
         zindex: -1,
         left: '0',
         width: '100%' , 
-
     }}>
         <source src='/qh.mp4' type="video/mp4"/>
       
