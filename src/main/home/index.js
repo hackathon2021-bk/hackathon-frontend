@@ -1,20 +1,20 @@
-import {Col ,Row} from "antd";
-
-export default function HomePage() {
-  
+import {Col ,Row, Card, Layout} from "antd";
+import Videohome from './videohome';
+function HomePage() {
   return <>
-    <Col>
-      <Row>
-        Video
-      </Row>
-
-      <Row>
-        Loi ich giai phap 
-      </Row>
-
-      <Row>
-        ....
-      </Row>
-    </Col>
-  </>;
+  
+    <body>
+        <section id="mohinh" >
+            <Videohome/>
+        </section> 
+              
+        <section id="loiich">     
+              <Layout>
+                <img src="/loiich.png"  width="100%" left="0" ></img>
+              </Layout>     
+        </section>
+    </body> 
+  
+  </>
 }
+export default HomePage;

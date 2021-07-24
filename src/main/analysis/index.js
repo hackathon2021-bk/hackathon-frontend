@@ -1,61 +1,90 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 // import {Bar, BarChart, ResponsiveContainer, Tooltip} from "recharts";
 import { Col, Row } from "antd";
 import data from "data/data";
 import { BarChart } from "components/Charts/BarChart";
 import { LineChart } from "components/Charts/LineChart";
+import styled from "styled-components";
+import { Menu } from 'antd';
+import { MailOutlined, AppstoreOutlined } from '@ant-design/icons';
+import { StatisticContent } from "./StatisticChart";
 
-const initialData = {
-  temperature: [{
-    name: 'Average temperature',
-    data: data.data[0].data_yearly.avg_temp,
-  }],
-  q: [{
-    name: 'Discharge',
-    data: data.data[0].data_yearly.Q,
-  }],
-  h: [{
-    name: 'Hydology',
-    data: data.data[0].data_yearly.H,
-  }],
-  rainfall: [{
-    name: 'Rainfall',
-    data: data.data[0].data_yearly.rainfall,
-  }],
-  evaporation: [{
-    name: 'Evaporation',
-    data: data.data[0].data_yearly.evaporation,
-  }]
-}
+const SelectWrapper = styled.div`
+margin-bottom: 24px;
+`;
+const AnalysisPage = () => {
 
-console.log(data.data[0].data_yearly.avg_temp);
+  const stationId = useSelector((state) => state.map.stationId);
+  const getInitialData = (id, key_) => {
+    let key = key_ || 'data_yearly';
+    let usingData = data.data[id];
+    const initialData = {
+      temperature: [{
+        name: 'Average temperature',
+        data: usingData[key].avg_temp,
+      }],
+      q: [{
+        name: 'Discharge',
+        data: usingData[key].Q,
+      }],
+      h: [{
+        name: 'Hydology',
+        data: usingData[key].H,
+      }],
+      rainfall: [{
+        name: 'Rainfall',
+        data: usingData[key].rainfall,
+      }],
+      evaporation: [{
+        name: 'Evaporation',
+        data: usingData[key].evaporation,
+      }]
+    };
+    return initialData;
+  }
 
-const HomePage = () => {
-  const [statisticData, setStatisticData] = useState(initialData);
+  const [currentSelectKey, setCurrentSelectKey] = useState('data_yearly');
+  const statisticData = getInitialData(stationId, currentSelectKey);
+  const [currentSelect, setCurrentSelect] = useState('day');
+  const handleSelectChange = (e) => {
+    setCurrentSelect(e.key);
+    switch (e.key) {
+      case 'day':
+        setCurrentSelectKey('data_daily');
+        break;
+      case 'month':
+        setCurrentSelectKey('data_monthly');
+        break;
+      case 'week':
+        setCurrentSelectKey('data_weekly');
+        break;
+      case 'year':
+        setCurrentSelectKey('data_yearly');
+        break;
+    }
+  }
 
   return (
     <>
-      <Row>
-        <Col span={10}>
-          <BarChart data={statisticData.temperature}
-            margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-        </Col>
-        <Col span={10}>
-          <BarChart data={statisticData.h}
-            margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={10}>
-          <LineChart data={statisticData.q}
-            margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-        </Col>
-        <Col span={10}>
-          <LineChart data={statisticData.rainfall}
-            margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
-        </Col>
-      </Row>
+      <SelectWrapper>
+        <Menu onClick={handleSelectChange} selectedKeys={[currentSelect]} mode="horizontal">
+          <Menu.Item key="day" icon={<MailOutlined />} style={{ marginBottom: '0px !important' }}>
+            Theo ngày
+          </Menu.Item>
+          {/* <Menu.Item key="week" icon={<AppstoreOutlined />} style={{ marginBottom: '0px !important' }}>
+            Theo tuần
+          </Menu.Item> */}
+          <Menu.Item key="month" icon={<AppstoreOutlined />} style={{ marginBottom: '0px !important' }}>
+            Theo tháng
+          </Menu.Item>
+          <Menu.Item key="year" icon={<AppstoreOutlined />} style={{ marginBottom: '0px !important' }}>
+            Theo năm
+          </Menu.Item>
+        </Menu>
+      </SelectWrapper>
+      <StatisticContent data={statisticData} />
     </>)
 }
 
-export default HomePage;
+export default AnalysisPage;
