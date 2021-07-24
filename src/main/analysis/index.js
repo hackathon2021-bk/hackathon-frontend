@@ -13,18 +13,12 @@ import { StatisticContent } from "./StatisticChart";
 const SelectWrapper = styled.div`
 margin-bottom: 24px;
 `;
-
-
-// console.log(data.data[0].data_yearly.avg_temp);
-
 const AnalysisPage = () => {
 
   const stationId = useSelector((state) => state.map.stationId);
   const getInitialData = (id, key_) => {
     let key = key_ || 'data_yearly';
-    console.log(key);
     let usingData = data.data[id];
-    console.log(usingData);
     const initialData = {
       temperature: [{
         name: 'Average temperature',
