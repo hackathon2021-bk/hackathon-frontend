@@ -1,6 +1,7 @@
 import {Col ,Row} from "antd";
 
-function HomePage() {
+export default function HomePage() {
+  
   return <>
     <Col>
       <Row>
@@ -17,5 +18,3 @@ function HomePage() {
     </Col>
   </>;
 }
-
-export default HomePage;

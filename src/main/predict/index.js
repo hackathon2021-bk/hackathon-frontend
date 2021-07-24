@@ -1,5 +1,14 @@
-function HomePage() {
-  return <div>okok</div>;
+import { useSelector } from "react-redux";
+import data from "data/data";
+
+
+export default function HomePage(props) {
+  const stationId = useSelector((state) => state.init.stationId);
+  const predictData = data['data'][stationId]['data_predict'];
+
+  console.log(predictData);
+  return (
+    <div></div>
+  );
 }
 
-export default HomePage;

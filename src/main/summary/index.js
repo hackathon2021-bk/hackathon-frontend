@@ -1,11 +1,10 @@
+import data from "data/data";
 import {Card, Col, Row} from "antd";
 import BaseMap from "./BaseMap";
-import data from "data/data";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import InformationCard from "./InformationCard";
 
-function HomePage() {
-  const dispatch = useDispatch();
+export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
 
   const getStationData = (data, stationId) =>{
@@ -50,5 +49,3 @@ function HomePage() {
     
   </>;
 }
-
-export default HomePage;

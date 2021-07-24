@@ -25,10 +25,10 @@ const SidebarLogo = () => {
     navStyle = NAV_STYLE_DRAWER;
   }
 
-  console.log(`current navStyle: ${navStyle}`);
-  console.log(`current navCollapsed: ${navCollapsed}`);
+  // console.log(`current navStyle: ${navStyle}`);
+  // console.log(`current navCollapsed: ${navCollapsed}`);
   return (
-    <div className="gx-layout-sider-header">
+    <div className="gx-layout-sider-header" style={{height: '200px'}}>
       {
       (navStyle === NAV_STYLE_FIXED || navStyle === NAV_STYLE_MINI_SIDEBAR) ? 
         <div className="gx-linebar">
@@ -50,15 +50,26 @@ const SidebarLogo = () => {
       null
       }
 
-      {/* <Link href="/" >
-        <a className="gx-site-logo">
+      <Link href="/" >
+        <a className="gx-site-logo gx-py-3">
         {navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR && width >= TAB_SIZE ?
-          <img alt="lo" src={("/images/w-logo.png")}/> :
+          <img alt="lo" src={("/images/w-logo.png")} className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
+          src="/images/wave-logo.svg"
+          width="100"
+          height="100"/> :
           themeType === THEME_TYPE_LITE ?
-            <img alt="logo1" src={("/images/logo-white.png")}/> :
-            <img alt="logo2" src={("/images/logo.png")}/>}
+            <img alt="logo1" src={("/images/wave-logo.svg")} className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
+            src="/images/wave-logo.svg"
+            width="100"
+            height="100"/> :
+            <img alt="logo2" src={("/images/wave-logo.svg")} 
+            className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo"
+            src="/images/wave-logo.svg"
+            width="200"
+            height="200"
+            />}
         </a>
-      </Link> */}
+      </Link>
     </div>
   );
 };
