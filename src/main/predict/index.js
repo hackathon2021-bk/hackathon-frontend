@@ -11,7 +11,7 @@ const { Row, Col, Slider } = require("antd");
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.init.stationId);
   const prepareData = (limit) => {
-    let pred = data['data'][stationId]['data_predict'];
+    let pred = data['data'][stationId-1]['data_predict']; // stationId -1 de lay dung offset
     return {
       temperature: [{
         name: 'Average temperature',

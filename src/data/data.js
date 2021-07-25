@@ -20,7 +20,7 @@ export default {
             "name": "Trạm Thủy Văn Môi Trường Hà Nội",
             "latitude": 21.0404595,
             "longitude": 105.8517801,
-            "known": 0,
+            "known": 1,
             "data_daily": {
                 "avg_temp": [
                     20.18,
@@ -2833,7 +2833,7 @@ export default {
             "name": "Trạm Thủy văn Sơn Tây",
             "latitude": 21.153536,
             "longitude": 105.5096681,
-            "known": 1,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     29.8,
@@ -14085,7 +14085,7 @@ export default {
             "name": "Trạm Thuỷ văn Lâm Sơn",
             "latitude": 20.8779697,
             "longitude": 105.494607,
-            "known": 1,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     28.42,
@@ -19711,7 +19711,7 @@ export default {
             "name": "Trạm thủy văn Ba Thá",
             "latitude": 20.8055109,
             "longitude": 105.7061945,
-            "known": 1,
+            "known": 0,
             "data_daily": {
                 "avg_temp": [
                     27.41,

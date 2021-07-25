@@ -9,7 +9,7 @@ import { Button } from "antd/lib/radio";
 const InformationCard = () => {
     const getStationData = (data, stationId) => {
         // console.log('stationId :>> ', stationId);
-        let dtPoint = data['data'][stationId];
+        let dtPoint = data['data'][stationId -1];
         // console.log('dtPoint :>> ', dtPoint);
         return {
             'id': stationId,
