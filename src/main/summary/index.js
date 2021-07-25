@@ -13,9 +13,9 @@ import { useEffect } from "react";
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
   console.log('final data :>> ', data);
-  
+
   const prepareData = (limit) => {
-    let pred = data['data'][stationId-1]['data_monthly'];
+    let pred = data['data'][stationId - 1]['data_monthly'];
     let abv_h = data['threshold']['H'] + 1;
     let abv_q = data['threshold']['Q'] + 1;
 
@@ -45,7 +45,7 @@ export default function HomePage(props) {
 
   const getStationData = (data, stationId) => {
     // console.log('stationId :>> ', stationId);
-    let dtPoint = data['data'][stationId-1];
+    let dtPoint = data['data'][stationId - 1];
     // console.log('dtPoint :>> ', dtPoint);
     return {
       'id': stationId,

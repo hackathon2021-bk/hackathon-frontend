@@ -4,7 +4,7 @@ import { key } from "constants/KeySetting";
 // import data from "data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { MapActions } from "app-redux/map";
-import map from "pages/map";
+import map from "pages/map/map";
 import { render } from "react-dom";
 
 
@@ -40,7 +40,7 @@ export default function SimpleMap() {
 
   const getStationData = (data, stationId) => {
     // console.log('stationId :>> ', stationId);
-    let dtPoint = data[stationId-1];
+    let dtPoint = data[stationId - 1];
     // console.log('dtPoint :>> ', dtPoint);
     return {
       'id': stationId,

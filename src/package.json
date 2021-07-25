@@ -24,6 +24,7 @@
     "react-google-maps": "^9.4.5",
     "react-intl": "^5.8.1",
     "react-redux": "^7.2.4",
+    "reactjs-popup": "^2.0.5",
     "recharts": "^2.0.10",
     "redux": "^4.1.0",
     "redux-dynamic-modules": "^5.2.3",
