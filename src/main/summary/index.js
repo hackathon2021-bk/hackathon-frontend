@@ -61,18 +61,20 @@ export default function HomePage(props) {
       'humidity': Math.round(dtPoint['data_daily']['humidity'][Math.floor(Math.random() * dtPoint['data_daily']['humidity'].length)]).toString(),
     }
   }
-  const alertMes = (email) => {
+  const alertMes = (email, curStationData) => {
     message.error('Vài chỉ số vượt quá ngưỡng an toàn, thông tin cảnh báo chi tiết sẽ được gửi về mail bạn đã đăng ký!');
-    let sentMessage = "Ahihi send ne` :))";
+    let sentMessage = `Mực nước của ${curStationData.name} là ${curStationData.water_level} và đã đạt mức nguy hiểm, hãy nâng mức độ cảnh báo.`;
+    // message.error(sentMessage);
     sendMail(sentMessage, email);
   };
 
   const email = useSelector((state) => state.init.email);
+  const curStationData = getStationData(data, stationId);
+
   useEffect(() => {
-    alertMes(email);
+    alertMes(email, curStationData);
   }, []);
 
-  const curStationData = getStationData(data, stationId);
 
   const curHour = (new Date()).getHours();
   const categories = [...Array(curHour + 1).keys()].map((hour) => `${hour}:00`);
