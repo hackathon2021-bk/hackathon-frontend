@@ -1,5 +1,5 @@
 import React from "react";
-import { GoogleMap, SymbolPath, Marker, withGoogleMap, withScriptjs } from "react-google-maps";
+import { GoogleMap, Marker, withGoogleMap, withScriptjs } from "react-google-maps";
 import { key } from "constants/KeySetting";
 // import data from "data/data";
 import { useDispatch, useSelector } from "react-redux";
