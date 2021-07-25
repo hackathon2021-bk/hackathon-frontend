@@ -137,7 +137,7 @@ const InformationCard = (props) => {
                     <Col className="gutter-row" span={16}>
                         <AutoComplete
                             dataSource={state.dataSource}
-                            style={{ width: 200 }}
+                            style={{ width: '100%' }}
                             onSearch={handleSearch}
                             placeholder="input here"
                         />
@@ -151,7 +151,7 @@ const InformationCard = (props) => {
                     </Col>
                 </Row>
                 <Row style={{ marginBottom: 8, justifyContent: "center" }}>
-                    <Col className="gutter-row" style={{ fontSize: "25px", fontFamily: 'Quicksand', margin: '10px 10px', textAlign: 'center' }}>
+                    <Col className="gutter-row" style={{ fontSize: "25px", margin: '10px 10px', textAlign: 'center' }}>
                         <b>{curStationData['name']}</b>
                     </Col>
                 </Row>
@@ -168,7 +168,7 @@ const InformationCard = (props) => {
                     <Col className="gutter-row" span={16}>
                         <AutoComplete
                             dataSource={state.dataSource}
-                            style={{ width: '100%' }}
+                            style={{ width: '100% !important' }}
                             // onSelect={onSelect}
                             onSearch={handleSearch}
                             placeholder="input here"
