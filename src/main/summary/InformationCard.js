@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import data from "data/data";
 import { Button } from "antd/lib/radio";
 
-
+import Link from "next/link";
 const InformationCard = () => {
     const getStationData = (data, stationId) => {
         // console.log('stationId :>> ', stationId);
-        let dtPoint = data['data'][stationId -1];
+        let dtPoint = data['data'][stationId - 1];
         // console.log('dtPoint :>> ', dtPoint);
         return {
             'id': stationId,
