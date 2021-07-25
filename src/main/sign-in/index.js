@@ -33,15 +33,13 @@ function SignIn() {
             <LogInWrapper>
               <div className="gx-app-login-main-content">
                 <div className="gx-app-logo-content">
-                  <div className="gx-app-logo-content-bg">
-                    {/* <img src="/images/appModule/neature.jpg" alt="Neature" /> */}
-                  </div>
+                  <div className="gx-app-logo-content-bg"></div>
                   <div className="gx-app-logo-wid">
-                    <h1>Đăng nhập</h1>
-                    <h3>Cập nhật thông tin nhanh chóng, chính xác</h3>
-                    <h3>Phân tích, dự đoán ứng dụng Trí tuệ nhân tạo </h3>
+                    <h1>QH - Just Dream It</h1>
+                    <h3 style={{color: 'white'}}>Cập nhật thông tin nhanh chóng, chính xác</h3>
+                    <h3 style={{color: 'white'}}>Phân tích, dự đoán ứng dụng Trí tuệ nhân tạo </h3>
                   </div>
-                  <div className="gx-app-logo">
+                  <div className="gx-app-logo gx-ml-4">
                     <img alt="example" src={"/images/logo.png"} />
                   </div>
                 </div>

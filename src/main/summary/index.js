@@ -70,7 +70,7 @@ export default function HomePage(props) {
 
   const email = useSelector((state) => state.init.email);
   const curStationData = getStationData(data, stationId);
-
+  console.log(`SENDING EMAIL: ${email}`);
   useEffect(() => {
     alertMes(email, curStationData);
   }, []);
