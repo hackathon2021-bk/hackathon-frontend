@@ -12,8 +12,10 @@ import { useEffect } from "react";
 
 export default function HomePage(props) {
   const stationId = useSelector((state) => state.map.stationId);
+  console.log('final data :>> ', data);
+  
   const prepareData = (limit) => {
-    let pred = data['data'][stationId]['data_monthly'];
+    let pred = data['data'][stationId-1]['data_monthly'];
     let abv_h = data['threshold']['H'] + 1;
     let abv_q = data['threshold']['Q'] + 1;
 
@@ -43,7 +45,7 @@ export default function HomePage(props) {
 
   const getStationData = (data, stationId) => {
     // console.log('stationId :>> ', stationId);
-    let dtPoint = data['data'][stationId];
+    let dtPoint = data['data'][stationId-1];
     // console.log('dtPoint :>> ', dtPoint);
     return {
       'id': stationId,
@@ -59,18 +61,20 @@ export default function HomePage(props) {
       'humidity': Math.round(dtPoint['data_daily']['humidity'][Math.floor(Math.random() * dtPoint['data_daily']['humidity'].length)]).toString(),
     }
   }
-  const alertMes = (email) => {
+  const alertMes = (email, curStationData) => {
     message.error('Vài chỉ số vượt quá ngưỡng an toàn, thông tin cảnh báo chi tiết sẽ được gửi về mail bạn đã đăng ký!');
-    let sentMessage = "Ahihi send ne` :))";
+    let sentMessage = `Mực nước của ${curStationData.name} là ${curStationData.water_level} và đã đạt mức nguy hiểm, hãy nâng mức độ cảnh báo.`;
+    // message.error(sentMessage);
     sendMail(sentMessage, email);
   };
 
   const email = useSelector((state) => state.init.email);
+  const curStationData = getStationData(data, stationId);
+
   useEffect(() => {
-    alertMes(email);
+    alertMes(email, curStationData);
   }, []);
 
-  const curStationData = getStationData(data, stationId);
 
   const curHour = (new Date()).getHours();
   const categories = [...Array(curHour + 1).keys()].map((hour) => `${hour}:00`);

@@ -1,7 +1,7 @@
 import React from "react";
-import { GoogleMap, SymbolPath, Marker, withGoogleMap, withScriptjs } from "react-google-maps";
+import { GoogleMap, Marker, withGoogleMap, withScriptjs } from "react-google-maps";
 import { key } from "constants/KeySetting";
-import data from "data/data";
+// import data from "data/data";
 import { useDispatch, useSelector } from "react-redux";
 import { MapActions } from "app-redux/map";
 import map from "pages/map";
@@ -35,11 +35,12 @@ const BaseMapWithMarker = withScriptjs(withGoogleMap((props) =>
 
 export default function SimpleMap() {
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.map.stationData);
   const stationId = useSelector((state) => state.map.stationId);
 
   const getStationData = (data, stationId) => {
     // console.log('stationId :>> ', stationId);
-    let dtPoint = data['data'][stationId];
+    let dtPoint = data[stationId-1];
     // console.log('dtPoint :>> ', dtPoint);
     return {
       'id': stationId,

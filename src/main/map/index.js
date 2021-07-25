@@ -32,7 +32,7 @@ function HomePage() {
 
   const props = {
     data: data,
-    stationId, stationId,
+    stationId: stationId,
     curStationData: curStationData,
     lstSubscribedStationId: lstSubscribedStationId
   }

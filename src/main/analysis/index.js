@@ -14,7 +14,7 @@ const AnalysisPage = () => {
   const stationId = useSelector((state) => state.map.stationId);
   const getInitialData = (id, key_) => {
     let key = key_ || 'data_yearly';
-    let usingData = data.data[id];
+    let usingData = data.data[id-1]; // stationId -1 == data position
     const initialData = {
       temperature: [{
         name: 'Average temperature',
