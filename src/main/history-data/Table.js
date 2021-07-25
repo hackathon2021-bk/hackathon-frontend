@@ -3,6 +3,7 @@ import {Row, Col, Card, Divider, Table} from "antd";
 import SonTay from "data/SonTay"
 import { useDispatch, useSelector } from "react-redux";
 import { LineChart } from "../../components/Duy-Charts/LineChart";
+import { AreaChart } from "components/Duy-Charts/AreaChart";
 
 const columns = [{
   title: 'Ngày',
@@ -85,37 +86,40 @@ const SimpleTable = (props) => {
   console.log("bool props.checked >>", props.checked);
 
   const data_chart= {
-    waterlevel: [{
+    waterlevel: [
+      {
       name: 'Mực nước',
       data: data.map(p => p.H).slice(1).slice(-30)
-    }],
-    predict_waterlevel: [{
-      name:'Mực nước dự đoán',
-      data:data.map(p => p.predict_waterlevel).slice(1).slice(-30)
-    }],
+      },
+      {
+        name:'Mực nước dự đoán',
+        data:data.map(p => p.predict_waterlevel).slice(1).slice(-30)
+      }
+  ],
     discharge: [{
       name: 'Lưu lượng', 
       data: data.map(p => p.Q).slice(1).slice(-30)
-    }],
-    predict_discharge: [{
+    },
+    {
       name: 'Lưu lượng dự đoán',
       data:data.map(p=> p.predict_discharge).slice(1).slice(-30)
-    }],
+    }]
   };
-  console.log('data water level:>> ', data[0].H);
+
+  const categories = [...Array(30).keys()].map((idx) => `${idx + 1}`);
 
   return props.checked ? 
   (
     <Card title={<span  style={{fontSize: '20px'}}>{curStationData.name}</span>}>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
         <Col span={24} className="gutter-row">
-          <LineChart data={[{"name": "Mực nước", "data":data_chart.waterlevel,
-                            "name": "Mực nước dự đoán", "data":data_chart.predict_waterlevel}]}
+          <LineChart data={data_chart.waterlevel}
             margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
             title={"Dữ Liệu Mực nước"}
             ytitle={"Mực nước"}
             xtitle={"Ngày"}
-            // categories={categories}
+            labels={false}
+            categories={categories}
           />
         </Col>
       </Row >
@@ -126,7 +130,9 @@ const SimpleTable = (props) => {
             title={"Dữ Liệu Lưu lượng"}
             ytitle={"Lưu lượng"}
             xtitle={"Ngày"}
-            // categories={categories}
+            colors={['#a054e3', '#d98e50']}
+            labels={false}
+            categories={categories}
           />
         </Col>
       </Row>
