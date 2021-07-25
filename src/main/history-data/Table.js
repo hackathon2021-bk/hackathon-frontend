@@ -1,7 +1,8 @@
 import React from "react";
-import {Card, Divider, Table} from "antd";
+import {Row, Col, Card, Divider, Table} from "antd";
 import SonTay from "data/SonTay"
 import { useDispatch, useSelector } from "react-redux";
+import { LineChart } from "../../components/Duy-Charts/LineChart";
 
 const columns = [{
   title: 'Ngày',
@@ -71,7 +72,7 @@ const SimpleTable = (props) => {
     let discharge = SonTay[getRandomInt(4382- stationId)].Q;
     data.push({
         key: 4382-i,
-        date: SonTay[getRandomInt(4382- stationId)].date,
+        date: SonTay[i].date,
         avgtemp: SonTay[getRandomInt(4382-stationId)].avgtemp,
         evaporation: SonTay[getRandomInt(4382- stationId)].evaporation,
         H: waterlevel ,
@@ -81,14 +82,56 @@ const SimpleTable = (props) => {
         predict_discharge: Math.round(discharge  * getRandomIntInRange(90,110), 2),
     });
   }
-  console.log("bool props.checked >>", props.props.checked);
+  console.log("bool props.checked >>", props.checked);
+
+  const data_chart= {
+    waterlevel: [{
+      name: 'Mực nước',
+      data: data.map(p => p.H).slice(1).slice(-30)
+    }],
+    predict_waterlevel: [{
+      name:'Mực nước dự đoán',
+      data:data.map(p => p.predict_waterlevel).slice(1).slice(-30)
+    }],
+    discharge: [{
+      name: 'Lưu lượng', 
+      data: data.map(p => p.Q).slice(1).slice(-30)
+    }],
+    predict_discharge: [{
+      name: 'Lưu lượng dự đoán',
+      data:data.map(p=> p.predict_discharge).slice(1).slice(-30)
+    }],
+  };
+  console.log('data water level:>> ', data[0].H);
+
   return props.checked ? 
   (
     <Card title={<span  style={{fontSize: '20px'}}>{curStationData.name}</span>}>
-      hello
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Col span={24} className="gutter-row">
+          <LineChart data={[{"name": "Mực nước", "data":data_chart.waterlevel,
+                            "name": "Mực nước dự đoán", "data":data_chart.predict_waterlevel}]}
+            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            title={"Dữ Liệu Mực nước"}
+            ytitle={"Mực nước"}
+            xtitle={"Ngày"}
+            // categories={categories}
+          />
+        </Col>
+      </Row >
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        <Col span={24} className="gutter-row">
+          <LineChart data={data_chart.discharge}
+            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            title={"Dữ Liệu Lưu lượng"}
+            ytitle={"Lưu lượng"}
+            xtitle={"Ngày"}
+            // categories={categories}
+          />
+        </Col>
+      </Row>
     </Card>
-  )
-  : (
+  ): (
     <Card title={<span  style={{fontSize: '20px'}}>{curStationData.name}</span>}>
       <Table className="gx-table-responsive" columns={columns} dataSource={data} pagination={{pageSize: 50}}
              scroll={{y: 450}}/>
