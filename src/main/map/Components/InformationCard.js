@@ -4,7 +4,7 @@ import { Table, Tag, Space } from 'antd';
 import { MapActions } from 'app-redux/map';
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "antd/lib/radio";
-
+import Link from "next/link";
 const InformationCard = (props) => {
     const dispatch = useDispatch();
     const data = props.props.data;
@@ -195,7 +195,7 @@ const InformationCard = (props) => {
                 </Row>
 
                 <Row style={{ marginBottom: 8, justifyContent: "center" }}>
-                    <Button className="gx-mb-0" type="primary" onClick={handleButtonClick}>Đăng ký</Button>
+                    <Link href='/map/register'><Button className="gx-mb-0" type="primary" onClick={handleButtonClick}>Đăng ký</Button></Link>
                 </Row>
             </>
     );
