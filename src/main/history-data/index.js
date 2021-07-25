@@ -17,13 +17,16 @@ function HomePage() {
   return (
     <Row justify="center">
       <Col>
-        <Switch checked={checked} onChange={setChecked}/>
+      <Row>
+        <h3>Thay đổi dạng biểu diễn: &nbsp;</h3>
+        <Switch className="gx-mb-3" checked={checked} onChange={setChecked} checkedChildren={"Biểu Đồ"} unCheckedChildren={"Bảng"}/>
+      </Row>
       </Col>
       <Col span={24}>
         <SimpleTable checked={checked} />
       </Col>
-      <Col  span={6} offset={6}>
-          <a href="/SonTay.csv" download><Button className="gx-mb-0" type="primary">Tải xuống</Button></a>       
+      <Col>
+          <a href="/SonTay.csv" download><Button className="gx-mb-3" type="primary">Tải xuống</Button></a>    
       </Col>
     </Row>
   );

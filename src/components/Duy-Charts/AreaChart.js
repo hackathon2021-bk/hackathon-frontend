@@ -5,6 +5,7 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
 const AreaChartOptions = {
   chart: {
     type: 'area',
+    stack: false, 
     height: 350,
     zoom: {
       enabled: false
@@ -14,9 +15,19 @@ const AreaChartOptions = {
     enabled: false
   },
   stroke: {
-    curve: 'straight'
+    curve: 'smooth'
   },
-  colors: ['#e3a334'],
+  fill: {
+    type: 'gradient',
+    gradient: {
+        shadeIntensity: 1,
+        inverseColors: false,
+        opacityFrom: 0.45,
+        opacityTo: 0.05,
+        stops: [20, 100, 150, 150]
+      },
+  },
+  colors: ['#a054e3', '#d98e50'],
   title: {
     text: 'Fundamental Analysis of Stocks',
     align: 'left'
@@ -37,14 +48,14 @@ const AreaChartOptions = {
   },
   legend: {
     horizontalAlign: 'left'
-  },
-  colors: ['#2E93fA'],
+  }
 };
 
 export const AreaChart = (props) => {
   let overide_option = JSON.parse(JSON.stringify(AreaChartOptions));;
   overide_option.title.text = props.title;
-  overide_option.colors[0] = props.color;
+  if (props.color)
+    overide_option.colors[0] = props.color;
   //   overide_option.xaxis.title.text = props.xtitle;
   overide_option.labels = props.categories;
   //   overide_option.yaxis.title.text = props.ytitle;

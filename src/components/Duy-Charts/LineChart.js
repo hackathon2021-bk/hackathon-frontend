@@ -23,7 +23,7 @@ const BarChartOptions = {
     offsetY: -20,
     style: {
       fontSize: '10px',
-      colors: ["#304758"]
+      colors: ["#304758", "#50d982"]
     }
   },
 
@@ -104,10 +104,7 @@ const LineChartOptions = {
       show: false
     }
   },
-  colors: ['#4fc26e', '#545454'],
-  dataLabels: {
-    enabled: true,
-  },
+  colors: ['#4fc26e', '#50b9d9'],
   stroke: {
     curve: 'smooth',
     width: 2,
@@ -174,6 +171,13 @@ export const LineChart = (props) => {
   if (props.color) {
     overide_option.colors[0] = props.color;
     overide_option.dataLabels.style.colors[0] = props.color;
+  }
+  if (props.colors) {
+    overide_option.colors = props.colors;
+  }
+  if (props.labels !== undefined) {
+    console.log('GO HERE');
+    overide_option.dataLabels = {enabled: props.labels};
   }
 
   return (
