@@ -44,14 +44,18 @@ const formItemLayout = {
 };
 const tailFormItemLayout = {
   wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
+    // xs: {
+    //   span: 24,
+    //   offset: 0,
+    // },
+    // sm: {
+    //   span: 25,
+    //   offset: 0,
+    // },
+    // lg: {
+    //   span: 30,
+    //   offset: 0,
+    // }
   },
 };
 
@@ -220,31 +224,35 @@ export const RegistrationForm = () => {
           <Input />
         </AutoComplete>
       </Form.Item>
-      <Form.Item
-        name="agreement"
-        valuePropName="checked"
-        rules={[
-          {
-            validator: (_, value) =>
-              value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
-          },
-        ]}
-        {...tailFormItemLayout}
-      >
-        <Checkbox>
-          Tôi muốn nhận dữ liệu từ trạm và <a href="">đồng ý </a> với điều khoản của QH.
-        </Checkbox>
-      </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit"
-          onClick={() => {
-            // alert(alertMes("Chúng tôi sẽ phản hồi lại bạn sớm nhất ngay khi có được phản hồi từ đối tác quản lí trạm quan trắc này."));
-            alertMes();
-            setTimeout(function () { router.push('/'); }, 3000);
-          }}>
-          Đăng ký theo dõi trạm
-        </Button>
-      </Form.Item>
+      <Row style={{justifyContent: 'center'}}>
+        <Form.Item
+          name="agreement"
+          valuePropName="checked"
+          rules={[
+            {
+              validator: (_, value) =>
+                value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+            },
+          ]}
+          {...tailFormItemLayout}
+        >
+          <Checkbox>
+            Tôi muốn nhận dữ liệu từ trạm và <a href="">đồng ý </a> với điều khoản của QH.
+          </Checkbox>
+        </Form.Item>
+      </Row>
+      <Row style={{justifyContent: 'center'}}>
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit"
+            onClick={() => {
+              // alert(alertMes("Chúng tôi sẽ phản hồi lại bạn sớm nhất ngay khi có được phản hồi từ đối tác quản lí trạm quan trắc này."));
+              alertMes();
+              setTimeout(function () { router.push('/summary'); }, 3000);
+            }}>
+            Đăng ký theo dõi trạm
+          </Button>
+        </Form.Item>
+      </Row>
     </Form>
   );
 };

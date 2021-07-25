@@ -17,18 +17,6 @@ export function sendMail(message, email) {
         console.log(error.text);
     });
   }
-  else {
-    let a =  { message : message,
-      toMail  : 'anhduy0911@gmail.com',
-      fromName: "QH-Teams"
-  };
-  console.log(a);
-  emailjs.send('service_hnmvlcx', 'template_juis6jq',a, "user_HhLPeIjiJuO5o8K66poBz").then((result) => {
-  console.log(result.text);
-  }, (error) => {
-      console.log(error.text);
-  });
-  }
 }
 
 

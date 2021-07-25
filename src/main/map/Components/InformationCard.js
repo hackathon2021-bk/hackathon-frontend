@@ -195,7 +195,7 @@ const InformationCard = (props) => {
                 </Row>
 
                 <Row style={{ marginBottom: 8, justifyContent: "center" }}>
-                    <Link href='/map/register'><Button className="gx-mb-0" type="primary" onClick={handleButtonClick}>Đăng ký</Button></Link>
+                    <Link href='/map/register'><Button className="gx-mb-0" type="primary">Đăng ký</Button></Link>
                 </Row>
             </>
     );
